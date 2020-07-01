@@ -9,12 +9,15 @@ using FluentAssertions;
 using SeleniumExtras.PageObjects;
 using TrustedBankAutomation.Core;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 {
 
     public class Homepage : BaseWebPage
     {
+
+      
 
         /// <summary>
         ///  initial wait time for page to load
@@ -27,10 +30,18 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// </summary>
         private string HOMEPAGE_VISUAL_CUE_TEXT { get; set; }
 
+
+        public struct userType
+        {
+
+            public const string Admin = "Admin";
+            public const string Applicant = "Applicant";
+        }
+
         /// The EMAIL-ADDRESS feild
         /// </summary>
         [CacheLookup]
-        [FindsBy(How = How.Id, Using = "emailAddress")]
+        [FindsBy(How = How.Id, Using = "email")]
         private IWebElement TxtFeildEmailAddress { get; set; }
 
 
@@ -38,15 +49,24 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// The PASSWORD feild
         /// </summary>
         [CacheLookup]
-        [FindsBy(How = How.Id, Using = "loginPassword")]
+        [FindsBy(How = How.Id, Using = "password")]
         private IWebElement TxtFieldPassword { get; set; }
 
         /// <summary>
-        /// The PASSWORD  RESET feild
+        /// The login button 
         /// </summary>
         [CacheLookup]
-        [FindsBy(How = How.CssSelector, Using = "input.btn.reset-password.ai-tracker")]
-        private IWebElement BtnPasswordReset { get; set; }
+        [FindsBy(How = How.XPath, Using = "//*[text()= \"Login\" ]")]
+        private IWebElement BtnLogin { get; set; }
+
+
+        /// <summary>
+        /// The Sign-up button
+        /// </summary>
+        [CacheLookup]
+        [FindsBy(How = How.XPath, Using = "//*[text()= \"Sign-Up\" ]")]
+        private IWebElement BtnSignUp { get; set; }
+
 
 
 
@@ -57,7 +77,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// <param name="serverPort"></param>
         /// <param name="browserType"></param>
         /// <param name="cueText "></param>
-        public Homepage(string url, string serverPort, string browserType, string cueText = "") : base(url, browserType, serverPort)
+        public Homepage(string url, string serverPort, string browserType, string cueText = "Email address:") : base(url, browserType, serverPort)
         {
             HOMEPAGE_VISUAL_CUE_TEXT = cueText;
             WaitForPageToLoad(MAX_WAIT_PAGE_TIME, HOMEPAGE_VISUAL_CUE_TEXT);
@@ -70,15 +90,55 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         }
 
 
-        /// <summary>
-        /// reloads the Homepage and initializes cached page objects
-        /// </summary>
-        private void ReloadPage()
+      /// <summary>
+      ///  Signs up a new applicant to be applicable for loan registration
+      /// </summary>
+      /// <param name="email"></param>
+      /// <param name="password"></param>
+        public void signUpUser(string email, string password )
         {
-            NavigateHome();
+            // set the email address
+            TxtFeildEmailAddress.SendKeys(email);
 
-            PageFactory.InitElements(BaseWebDriver, this);
+            // set the password
+            TxtFieldPassword.SendKeys(email);
+
+            // signs up a new user
+            BtnSignUp.Click();
+
         }
+
+
+
+
+
+        /// <summary>
+        ///   Login a user to the application
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="userProfile"></param>
+        /// <returns></returns>
+        public object loginUser(string email, string password, string userProfile)
+        {
+         
+            // set the email address
+            TxtFeildEmailAddress.SendKeys(email);
+
+            // set the password
+            TxtFieldPassword.SendKeys(email);
+
+            // signs up a new user
+            BtnSignUp.Click();
+
+            if (userProfile == userType.Admin)
+                return new UpdateLoans(BaseWebDriver);
+            else
+                return new ApplyForLoan(BaseWebDriver);
+
+        }
+
+   
 
 
 

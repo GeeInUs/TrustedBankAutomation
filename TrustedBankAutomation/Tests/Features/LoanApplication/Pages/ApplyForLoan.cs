@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using FluentAssertions;
 using SeleniumExtras.PageObjects;
 using TrustedBankAutomation.Core;
@@ -27,43 +28,40 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// </summary>
         private string APPLICATION_VISUAL_CUE_TEXT { get; set; }
 
-        /// The EMAIL-ADDRESS feild
+        /// The yearly income feild
         /// </summary>
         [CacheLookup]
-        [FindsBy(How = How.Id, Using = "emailAddress")]
-        private IWebElement TxtFeildEmailAddress { get; set; }
+        [FindsBy(How = How.Id, Using = "txtIncome")]
+        private IWebElement TxtFeildYearlyIncome { get; set; }
 
 
         /// <summary>
-        /// The PASSWORD feild
+        /// The amount of loan feild
         /// </summary>
         [CacheLookup]
-        [FindsBy(How = How.Id, Using = "loginPassword")]
-        private IWebElement TxtFieldPassword { get; set; }
+        [FindsBy(How = How.Id, Using = "cmbAmount")]
+        private IWebElement CmbFieldAmount { get; set; }
 
         /// <summary>
-        /// The PASSWORD  RESET feild
+        /// The apply button
         /// </summary>
         [CacheLookup]
-        [FindsBy(How = How.CssSelector, Using = "input.btn.reset-password.ai-tracker")]
-        private IWebElement BtnPasswordReset { get; set; }
+        [FindsBy(How = How.CssSelector, Using = "#application > div.float-right > button")]
+        private IWebElement BtnApply { get; set; }
 
-
-
-        /// <summary>
-        /// reloads the Loans page and initializes cached page objects
+        /// The logout link
         /// </summary>
-        private void ReloadPage()
-        {
-            NavigateHome();
+        [CacheLookup]
+        [FindsBy(How = How.LinkText, Using = "Logout")]
+        private IWebElement LinkLogOut { get; set; }
 
-            PageFactory.InitElements(BaseWebDriver, this);
-        }
 
         /// <summary>
         /// Initialize the applicant loans page using a driver
         /// </summary>
-        public ApplyForLoan(IWebDriver currentDriver)
+        /// <param name="currentDriver"></param>
+        /// <param name="visualCue"></param>
+        public ApplyForLoan(IWebDriver currentDriver, string visualCue = "My Details")
         {
             BaseWebDriver = currentDriver;
             WaitForPageToLoad(MAX_WAIT_PAGE_TIME, APPLICATION_VISUAL_CUE_TEXT);
@@ -74,7 +72,36 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         }
 
 
-      
+        /// <summary>
+        ///  Applicant applies for a new loan
+        /// </summary>
+        /// <param name="income"></param>
+        /// <param name="loanAmt"></param>
+        public void applicantApply(string income, string loanAmt)
+        {
+            // set the yearly income
+            TxtFeildYearlyIncome.Clear();
+            TxtFeildYearlyIncome.SendKeys(income);
+
+            // select the loan amount
+            CmbFieldAmount.Click();
+            new SelectElement(CmbFieldAmount).SelectByText(loanAmt);
+
+            // apply for loan
+            BtnApply.Click();
+
+        }
+
+
+
+        /// <summary>
+        /// Log out the active user
+        /// </summary>
+        public void LogOut()
+        {
+            LinkLogOut.Click();
+        }
+
 
 
 
