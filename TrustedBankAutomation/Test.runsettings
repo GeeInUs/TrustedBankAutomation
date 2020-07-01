@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <!-- Configurations that affect the Test Framework -->
+  <RunConfiguration>
+    <MaxCpuCount>1</MaxCpuCount>
+    <!-- Path relative to directory that contains .runsettings file-->
+    <ResultsDirectory>.\TestResults</ResultsDirectory>
+
+    <!-- x86 or x64 -->
+    <!-- You can also change it from the Test menu; choose "Processor Architecture for AnyCPU Projects" -->
+    <TargetPlatform>x64</TargetPlatform>
+
+  </RunConfiguration>
+  <!-- Parameters used by tests at run time -->
+  <TestRunParameters>
+    <Parameter name="ui.base.url" value="http://localhost:52448/Account/Login" />
+    <Parameter name="server.comm.port" value="4444" />
+    <Parameter name="screenshot.dir.login" value="\ScreenShots\Login\" />
+    <Parameter name="screenshot.dir.applicant" value="\ScreenShots\Applicant\" />
+    <Parameter name="screenshot.dir.admin" value="\ScreenShots\Administrator\" /> 
+  </TestRunParameters>
+
+</RunSettings>
