@@ -3,7 +3,6 @@
     I want to to be able to login
     So that I can apply for a new loan applicaion
 
-
 Scenario Outline: New Applicant applies for a loan that is likely to be acceptd
 	When I launch TrustBank Page
 	And I sign-up with email <Email> and password <Password>
