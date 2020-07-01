@@ -13,11 +13,9 @@
   </RunConfiguration>
   <!-- Parameters used by tests at run time -->
   <TestRunParameters>
-    <Parameter name="ui.base.url" value="http://localhost:52448/Account/Login" />
+    <Parameter name="ui.base.url" value="http://localhost:5001/login" />
     <Parameter name="server.comm.port" value="4444" />
-    <Parameter name="screenshot.dir.login" value="\ScreenShots\Login\" />
-    <Parameter name="screenshot.dir.applicant" value="\ScreenShots\Applicant\" />
-    <Parameter name="screenshot.dir.admin" value="\ScreenShots\Administrator\" /> 
+    <Parameter name="screenshot.dir" value="\ScreenShots\" />
   </TestRunParameters>
 
 </RunSettings>

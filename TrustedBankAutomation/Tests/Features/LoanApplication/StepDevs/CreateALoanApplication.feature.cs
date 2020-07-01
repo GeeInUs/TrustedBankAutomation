@@ -92,17 +92,19 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd(string email, string password, string loanAmount, string yearIncome, string canApply, string[] exampleTags)
+        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd(string browser, string email, string password, string userType, string loanAmount, string yearIncome, string canApply, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Browser", browser);
             argumentsOfScenario.Add("Email", email);
             argumentsOfScenario.Add("Password", password);
+            argumentsOfScenario.Add("UserType", userType);
             argumentsOfScenario.Add("LoanAmount", loanAmount);
             argumentsOfScenario.Add("YearIncome", yearIncome);
             argumentsOfScenario.Add("CanApply", canApply);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New Applicant applies for a loan that is likely to be acceptd", null, tagsOfScenario, argumentsOfScenario);
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -122,118 +124,130 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.When("I launch TrustBank Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+ testRunner.When(string.Format("I launch TrustBank Page on {0}", browser), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 8
  testRunner.And(string.Format("I sign-up with email {0} and password {1}", email, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
- testRunner.And("I login to a loan application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
+ testRunner.And(string.Format("As a {0}, I access the loan application", userType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 10
  testRunner.Given(string.Format("I input a loan of {0} with a yearly income of {1}", loanAmount, yearIncome), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 12
- testRunner.Then(string.Format("I {0} for a loan fpr an Administrator to review", canApply), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+ testRunner.Then(string.Format("I {0} for a loan for an Administrator to review", canApply), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New Applicant applies for a loan that is likely to be acceptd: \"Test1@gmail.com\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New Applicant applies for a loan that is likely to be acceptd: Variant 0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Create a loan application")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "\"Test1@gmail.com\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "\"Chrome\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Email", "\"Test1@gmail.com\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Password", "\"Password1!\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"400\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserType", "\"Applicant\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"£5000\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"80,000\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:CanApply", "True")]
-        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd_Test1Gmail_Com()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:CanApply", "\"True\"")]
+        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd_Variant0()
         {
-#line 7
-this.NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd("\"Test1@gmail.com\"", "\"Password1!\"", "\"400\"", "\"80,000\"", "True", ((string[])(null)));
+#line 6
+this.NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd("\"Chrome\"", "\"Test1@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£5000\"", "\"80,000\"", "\"True\"", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New Applicant applies for a loan that is likely to be acceptd: \"Test2@gmail.com\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New Applicant applies for a loan that is likely to be acceptd: Variant 1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Create a loan application")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "\"Test2@gmail.com\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "\"Chrome\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Email", "\"Test2@gmail.com\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Password", "\"Password1!\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"40000\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserType", "\"Applicant\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"£40000\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"20,000\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:CanApply", "True")]
-        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd_Test2Gmail_Com()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:CanApply", "\"True\"")]
+        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd_Variant1()
         {
-#line 7
-this.NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd("\"Test2@gmail.com\"", "\"Password1!\"", "\"40000\"", "\"20,000\"", "True", ((string[])(null)));
+#line 6
+this.NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd("\"Chrome\"", "\"Test2@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£40000\"", "\"20,000\"", "\"True\"", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New Applicant applies for a loan that is likely to be acceptd: \"Test3@gmail.com\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New Applicant applies for a loan that is likely to be acceptd: Variant 2")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Create a loan application")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "\"Test3@gmail.com\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "\"Chrome\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Email", "\"Test3@gmail.com\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Password", "\"Password1!\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"40000\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserType", "\"Applicant\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"£40000\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"0\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:CanApply", "True")]
-        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd_Test3Gmail_Com()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:CanApply", "\"True\"")]
+        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd_Variant2()
         {
-#line 7
-this.NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd("\"Test3@gmail.com\"", "\"Password1!\"", "\"40000\"", "\"0\"", "True", ((string[])(null)));
+#line 6
+this.NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd("\"Chrome\"", "\"Test3@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£40000\"", "\"0\"", "\"True\"", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New Applicant applies for a loan that is likely to be acceptd: \"Test4@gmail.com\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New Applicant applies for a loan that is likely to be acceptd: Variant 3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Create a loan application")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "\"Test4@gmail.com\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 3")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "\"Chrome\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Email", "\"Test4@gmail.com\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Password", "\"Password1!\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"5000\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserType", "\"Applicant\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"£5000\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"11111111111111111111111111111\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:CanApply", "False")]
-        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd_Test4Gmail_Com()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:CanApply", "\"False\"")]
+        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd_Variant3()
         {
-#line 7
-this.NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd("\"Test4@gmail.com\"", "\"Password1!\"", "\"5000\"", "\"11111111111111111111111111111\"", "False", ((string[])(null)));
+#line 6
+this.NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd("\"Chrome\"", "\"Test4@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£5000\"", "\"11111111111111111111111111111\"", "\"False\"", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New Applicant applies for a loan that is likely to be acceptd: \"Test5@gmail.com\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New Applicant applies for a loan that is likely to be acceptd: Variant 4")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Create a loan application")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "\"Test5@gmail.com\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 4")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "\"Chrome\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Email", "\"Test5@gmail.com\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Password", "\"Password1!\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"10000\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserType", "\"Applicant\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"£10000\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"-1\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:CanApply", "False")]
-        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd_Test5Gmail_Com()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:CanApply", "\"False\"")]
+        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd_Variant4()
         {
-#line 7
-this.NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd("\"Test5@gmail.com\"", "\"Password1!\"", "\"10000\"", "\"-1\"", "False", ((string[])(null)));
+#line 6
+this.NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd("\"Chrome\"", "\"Test5@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£10000\"", "\"-1\"", "\"False\"", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New Applicant applies for a loan that is likely to be acceptd: \"Test6@gmail.com\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("New Applicant applies for a loan that is likely to be acceptd: Variant 5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Create a loan application")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "\"Test6@gmail.com\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 5")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Browser", "\"Chrome\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Email", "\"Test6@gmail.com\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Password", "\"Password1!\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"10000\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"35,000.89\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:CanApply", "False")]
-        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd_Test6Gmail_Com()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserType", "\"Applicant\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"£10000\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"41,000.567\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:CanApply", "\"False\"")]
+        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd_Variant5()
         {
-#line 7
-this.NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd("\"Test6@gmail.com\"", "\"Password1!\"", "\"10000\"", "\"35,000.89\"", "False", ((string[])(null)));
+#line 6
+this.NewApplicantAppliesForALoanThatIsLikelyToBeAcceptd("\"Chrome\"", "\"Test6@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£10000\"", "\"41,000.567\"", "\"False\"", ((string[])(null)));
 #line hidden
         }
     }

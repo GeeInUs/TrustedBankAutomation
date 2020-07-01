@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 {
 
-    public class UpdateLoans : BaseWebPage
+    public class AdminPage : BaseWebPage
     {
 
         /// <summary>
@@ -56,9 +56,11 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// </summary>
         /// <param name="currentDriver"></param>
         /// <param name="pageVisualCue"></param>
-        public UpdateLoans(IWebDriver currentDriver, string pageVisualCue = "Applications")
+        public AdminPage(IWebDriver currentDriver, string pageVisualCue = "Applications")
         {
+            APPLICATION_VISUAL_CUE_TEXT = pageVisualCue;
             BaseWebDriver = currentDriver;
+
             WaitForPageToLoad(MAX_WAIT_PAGE_TIME, APPLICATION_VISUAL_CUE_TEXT);
             MaximizePage();
             PageFactory.InitElements(BaseWebDriver, this);

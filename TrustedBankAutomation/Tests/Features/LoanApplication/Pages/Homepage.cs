@@ -97,10 +97,14 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
       /// <param name="password"></param>
         public void signUpUser(string email, string password )
         {
+            PageFactory.InitElements(BaseWebDriver, this);
+
             // set the email address
+            TxtFeildEmailAddress.Clear();
             TxtFeildEmailAddress.SendKeys(email);
 
             // set the password
+            TxtFieldPassword.Clear();
             TxtFieldPassword.SendKeys(email);
 
             // signs up a new user
@@ -121,20 +125,23 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// <returns></returns>
         public object loginUser(string email, string password, string userProfile)
         {
-         
+            PageFactory.InitElements(BaseWebDriver, this);
+
             // set the email address
+            TxtFeildEmailAddress.Clear();
             TxtFeildEmailAddress.SendKeys(email);
 
             // set the password
+            TxtFieldPassword.Clear();
             TxtFieldPassword.SendKeys(email);
 
             // signs up a new user
-            BtnSignUp.Click();
+            BtnLogin.Click();
 
             if (userProfile == userType.Admin)
-                return new UpdateLoans(BaseWebDriver);
+                return new AdminPage(BaseWebDriver);
             else
-                return new ApplyForLoan(BaseWebDriver);
+                return new ApplicantPage(BaseWebDriver);
 
         }
 

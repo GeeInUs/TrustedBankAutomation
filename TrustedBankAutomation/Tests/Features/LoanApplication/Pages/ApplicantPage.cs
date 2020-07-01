@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 {
 
-    public class ApplyForLoan : BaseWebPage
+    public class ApplicantPage : BaseWebPage
     {
 
         /// <summary>
@@ -61,9 +61,11 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// </summary>
         /// <param name="currentDriver"></param>
         /// <param name="visualCue"></param>
-        public ApplyForLoan(IWebDriver currentDriver, string visualCue = "My Details")
+        public ApplicantPage(IWebDriver currentDriver, string visualCue = "My Details")
         {
-            BaseWebDriver = currentDriver;
+            APPLICATION_VISUAL_CUE_TEXT = visualCue;
+             BaseWebDriver = currentDriver;
+
             WaitForPageToLoad(MAX_WAIT_PAGE_TIME, APPLICATION_VISUAL_CUE_TEXT);
             MaximizePage();
             PageFactory.InitElements(BaseWebDriver, this);
@@ -71,24 +73,35 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 
         }
 
-
         /// <summary>
-        ///  Applicant applies for a new loan
+        /// Applicant applies for a new loan
         /// </summary>
         /// <param name="income"></param>
         /// <param name="loanAmt"></param>
-        public void applicantApply(string income, string loanAmt)
+        /// <returns>True if application was sent successfully, false otherwise</returns>
+        public bool applicantApply(string income, string loanAmt)
         {
-            // set the yearly income
-            TxtFeildYearlyIncome.Clear();
-            TxtFeildYearlyIncome.SendKeys(income);
+            bool appliedSuccessfully = false;
+            try
+            {
+                // set the yearly income
+                TxtFeildYearlyIncome.Clear();
+                TxtFeildYearlyIncome.SendKeys(income);
 
-            // select the loan amount
-            CmbFieldAmount.Click();
-            new SelectElement(CmbFieldAmount).SelectByText(loanAmt);
+                // select the loan amount
+                CmbFieldAmount.Click();
+                new SelectElement(CmbFieldAmount).SelectByText(loanAmt);
 
-            // apply for loan
-            BtnApply.Click();
+                // apply for loan
+                BtnApply.Click();
+
+                appliedSuccessfully = true; 
+
+            } catch(Exception) {
+                appliedSuccessfully = false;
+            }
+
+            return appliedSuccessfully;
 
         }
 

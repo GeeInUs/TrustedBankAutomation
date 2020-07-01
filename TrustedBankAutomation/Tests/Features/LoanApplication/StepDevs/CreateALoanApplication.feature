@@ -4,16 +4,16 @@
     So that I can apply for a new loan applicaion
 
 Scenario Outline: New Applicant applies for a loan that is likely to be acceptd
-	When I launch TrustBank Page
+	When I launch TrustBank Page on <Browser>
 	And I sign-up with email <Email> and password <Password>
-	And I login to a loan application
+	And As a <UserType>, I access the loan application
 	Given I input a loan of <LoanAmount> with a yearly income of <YearIncome>  
-	Then  I <CanApply> for a loan fpr an Administrator to review 
+	Then  I <CanApply> for a loan for an Administrator to review 
 	Examples: 
-	| Email             | Password     | LoanAmount | YearIncome                      | CanApply |
-	| "Test1@gmail.com" | "Password1!" | "400"      | "80,000"                        | True     |
-	| "Test2@gmail.com" | "Password1!" | "40000"    | "20,000"                        | True     |
-	| "Test3@gmail.com" | "Password1!" | "40000"    | "0"                             | True     |
-	| "Test4@gmail.com" | "Password1!" | "5000"     | "11111111111111111111111111111" | False    |
-	| "Test5@gmail.com" | "Password1!" | "10000"    | "-1"                            | False    |
-	| "Test6@gmail.com" | "Password1!" | "10000"    | "35,000.89"                     | False    |
+	| Browser  | Email             | Password     | UserType    | LoanAmount | YearIncome                      | CanApply |
+	| "Chrome" | "Test1@gmail.com" | "Password1!" | "Applicant" | "£5000"    | "80,000"                        | "True"   |
+	| "Chrome" | "Test2@gmail.com" | "Password1!" | "Applicant" | "£40000"   | "20,000"                        | "True"   |
+	| "Chrome" | "Test3@gmail.com" | "Password1!" | "Applicant" | "£40000"   | "0"                             | "True"   |
+	| "Chrome" | "Test4@gmail.com" | "Password1!" | "Applicant" | "£5000"    | "11111111111111111111111111111" | "False"  |
+	| "Chrome" | "Test5@gmail.com" | "Password1!" | "Applicant" | "£10000"   | "-1"                            | "False"  |
+	| "Chrome" | "Test6@gmail.com" | "Password1!" | "Applicant" | "£10000"   | "41,000.567"                    | "False"  |	
