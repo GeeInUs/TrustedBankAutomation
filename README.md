@@ -4,8 +4,8 @@ The TrustedBank Loan Management Application relies on a database that holds info
 Testing is specification by design. Cucumber files should be written to drive tests.
 
 #Test Framework Stack
-## SpecFlow 
-to write BDD tests
+-- SpecFlow 
+.NET write BDD tests
 ## Selenium WEBDRIVER 
 is used to drive the browser instance of the application we wish to test. The selenium server on the other is responsible for translating/interpreting SELENESE commands passed from the test program, and acts as an HTTP proxy, intercepting and verifying HTTP messages passed between the browser and the application under test. 
 ## Fluet Assertion 
