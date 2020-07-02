@@ -5,15 +5,19 @@ Testing is specification by design. Cucumber files should be written to drive te
 
 # Test Framework Stack
 - SpecFlow 
-- Selenium WEBDRIVER 
+- Git
+- Selenium WEBDRIVER
 - Fluet Assertion 
 - SQL Server
+- Chrome Browser Version 83.0.4103.116 (Official Build) (64-bit)
+- Java JDK
 
+# Test Oracle
 
-# Running tests
 The Project is set-up testing in a data-driven approach to testing
 
 Tests are organized into the major features with each feature having data and properties mimicking examples of how the features will work in reality.
+
 
 To exemplify, the Registration Feature is further divided into Environments that hold test data that will drive testing of the feature.
 
