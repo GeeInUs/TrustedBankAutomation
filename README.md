@@ -5,12 +5,17 @@ Testing is specification by design. Cucumber files should be written to drive te
 
 # Test Framework Stack
 - SpecFlow 
+Specification and run
 - Git
+Source control for test automation framework
 - Selenium WEBDRIVER
 - Fluet Assertion 
-- SQL Server
 - Chrome Browser Version 83.0.4103.116 (Official Build) (64-bit)
 - Java JDK
+
+# Operating system
+- Windows (Windows Server 2019 Datacenter)
+- SqlServer (Management.SqlIaaSAgent)
 
 # Test Oracle
 
