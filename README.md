@@ -18,10 +18,11 @@ Testing is specification by design. Cucumber files should be written to drive te
     * App lication Under test will be driven on this
 - Java JDK 
     * To launch an instance of selenum server
-
-# Operating system
 - Windows (Windows Server 2019 Datacenter) 
-- SqlServer (Management.SqlIaaSAgent)   
+  * To host web aapplication
+  * Framework and libarary references
+- SqlServer (Management.SqlIaaSAgent)
+  * Application Under Test data repositoty
 
 # Test Execution
 I would prefer that solution in integrated to MS Azure for CI
