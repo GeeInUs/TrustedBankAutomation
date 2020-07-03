@@ -4,12 +4,18 @@ The TrustedBank Loan Management Application relies on a database that holds info
 Testing is specification by design. Cucumber files should be written to drive tests.
 
 # Test Framework Stack
-- SpecFlow -For Specification and run
-- Fluet Assertion -To verify Acceptance test conditions
-- Git -For Source control for test automation framework
-- Selenium WEBDRIVER -To drive UI testings 
-- Chrome Browser -App lication Under test will be driven on this
-- Java JDK -To lauch an instance of selenum server
+- SpecFlow 
+For Specification and run
+- Fluet Assertion 
+To verify Acceptance test conditions
+- Git 
+For Source control for test automation framework
+- Selenium WEBDRIVER 
+To drive UI testings 
+- Chrome Browser 
+App lication Under test will be driven on this
+- Java JDK 
+To lauch an instance of selenum server
 
 # Operating system
 - Windows (Windows Server 2019 Datacenter) 
