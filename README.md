@@ -5,7 +5,7 @@ Testing is specification by design. Cucumber files should be written to drive te
 
 # Test Framework Stack
 - SpecFlow 
--- For Specification and run
+--For Specification and run
 - Fluet Assertion 
 To verify Acceptance test conditions
 - Git 
