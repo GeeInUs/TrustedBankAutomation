@@ -20,7 +20,6 @@ using System.Drawing;
 using System.Runtime.InteropServices.ComTypes;
 using System.Drawing.Imaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TechTalk.SpecFlow;
 
 namespace TrustedBankAutomation.Core
 {
@@ -630,7 +629,7 @@ namespace TrustedBankAutomation.Core
         /// </summary>
         /// <param name="CurrTestContext"></param>
         /// <param name="ScreenShotDir"></param>
-        public void TakeScreenShot(TestContext CurrTestContext, string ScreenShotDir)
+        public void TakeScreenShot( TestContext CurrTestContext, string ScreenShotDir)
         {
             Tuple<bool, string> SecondTake = null;
             Tuple<bool, string> ThirdTake = null;

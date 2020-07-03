@@ -1,7 +1,4 @@
-﻿
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium;
@@ -10,6 +7,7 @@ using SeleniumExtras.PageObjects;
 using TrustedBankAutomation.Core;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 {
@@ -17,12 +15,14 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
     public class Homepage : BaseWebPage
     {
 
-      
-
         /// <summary>
         ///  initial wait time for page to load
         /// </summary>
         private const int MAX_WAIT_PAGE_TIME = 10000;
+
+
+        private const string adminUserName = "admin@trustedbank.org";
+        private const string adminPassword = "abcd123";
 
 
         /// <summary>
@@ -90,12 +90,14 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         }
 
 
-      /// <summary>
-      ///  Signs up a new applicant to be applicable for loan registration
-      /// </summary>
-      /// <param name="email"></param>
-      /// <param name="password"></param>
-        public void signUpUser(string email, string password )
+        /// <summary>
+        ///  Signs up a new applicant to be applicable for loan registration
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="currTestContext"></param>
+        /// <param name="screenShotDir"></param>
+        public void signUpUser(string email, string password, TestContext currTestContext, string screenShotDir )
         {
             PageFactory.InitElements(BaseWebDriver, this);
 
@@ -105,14 +107,15 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 
             // set the password
             TxtFieldPassword.Clear();
-            TxtFieldPassword.SendKeys(email);
+            TxtFieldPassword.SendKeys(password);
+
+            //Take screenshot before sign-up
+            TakeScreenShot(currTestContext, screenShotDir);
 
             // signs up a new user
             BtnSignUp.Click();
 
         }
-
-
 
 
 
@@ -122,10 +125,19 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <param name="userProfile"></param>
+        /// <param name="currTestContext"></param>
+        /// <param name="screenShotDir"></param>
         /// <returns></returns>
-        public object loginUser(string email, string password, string userProfile)
+        public object loginUser(string email, string password, string userProfile, TestContext currTestContext, string screenShotDir)
         {
             PageFactory.InitElements(BaseWebDriver, this);
+
+            if (userProfile == userType.Admin)
+            {
+                email = adminUserName;
+                password = adminPassword;
+
+            }
 
             // set the email address
             TxtFeildEmailAddress.Clear();
@@ -133,7 +145,10 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 
             // set the password
             TxtFieldPassword.Clear();
-            TxtFieldPassword.SendKeys(email);
+            TxtFieldPassword.SendKeys(password);
+
+            //Take screenshot before login
+            TakeScreenShot(currTestContext, screenShotDir);
 
             // signs up a new user
             BtnLogin.Click();
@@ -142,6 +157,8 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
                 return new AdminPage(BaseWebDriver);
             else
                 return new ApplicantPage(BaseWebDriver);
+
+           
 
         }
 

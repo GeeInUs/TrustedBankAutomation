@@ -9,7 +9,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
 {
     [Binding]
 
-    public class CreateALoanApplicationSteps
+    public class Steps
     {
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// <param name="_scenarioContext"></param>
         /// <param name="_featureContext"></param>
 
-        public CreateALoanApplicationSteps(ScenarioContext _scenarioContext, FeatureContext _featureContext)
+        public Steps(ScenarioContext _scenarioContext, FeatureContext _featureContext)
         {
             scenarioContext = _scenarioContext;
 
@@ -95,6 +95,8 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
             Init();
         }
 
+
+    
         [AfterFeature]
         public static void Dereference()
         {
@@ -111,17 +113,17 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// </summary>
         private void Init()
         {
-         
             screenShotDir = Directory.GetCurrentDirectory() + testContext.Properties["screenshot.dir"];
 
             seleniumPort =  ( testContext.Properties["server.comm.port"]).ToString() ;
 
             baseUrl =  (testContext.Properties["ui.base.url"]).ToString();
 
-            if (!Directory.Exists(screenShotDir))
-                Directory.CreateDirectory(screenShotDir);
+            if (Directory.Exists(screenShotDir))
+                Directory.Delete(screenShotDir, true);
 
-
+             Directory.CreateDirectory(screenShotDir);
+            
         }
 
 
@@ -129,7 +131,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         [Given(@"I input a loan of ""(.*)"" with a yearly income of ""(.*)""")]
         public void GivenIInputALoanOfWithAYearlyIncomeOf(string loanAmt, string incomeAmt)
         {
-            applicationSentOk = pageObjectApplicantPage.applicantApply(incomeAmt, loanAmt);
+            applicationSentOk = pageObjectApplicantPage.applicantApply(incomeAmt, loanAmt, testContext, screenShotDir);
         }
         
         [When(@"I launch TrustBank Page on ""(.*)""")]
@@ -140,6 +142,8 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
             else
                 pageObjectHomePage.NavigateHome();
 
+            // Take screenshot upon page launch
+            pageObjectHomePage.TakeScreenShot(testContext, screenShotDir);
         }
         
 
@@ -150,26 +154,52 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
             currUserPassword = password;
 
             //sign-up the user
-            pageObjectHomePage.signUpUser(currUserEmail, currUserPassword);
+            pageObjectHomePage.signUpUser(currUserEmail, currUserPassword, testContext, screenShotDir);
 
         }
 
-        [When(@"As a ""(.*)"", I access the loan application")]
+        [When(@"As ""(.*)"", I access the loan application")]
         public void WhenILoginToALoanApplication(string userType)
         {
           
             if (userType == Homepage.userType.Admin)
-                pageObjectAdminPage = (AdminPage) (pageObjectHomePage.loginUser(currUserEmail, currUserPassword, userType));
+                pageObjectAdminPage = (AdminPage) (pageObjectHomePage.loginUser(currUserEmail, currUserPassword, userType, testContext, screenShotDir));
 
             else if (userType == Homepage.userType.Applicant)
-                pageObjectApplicantPage = (ApplicantPage) pageObjectHomePage.loginUser(currUserEmail, currUserPassword, userType);
+                pageObjectApplicantPage = (ApplicantPage) pageObjectHomePage.loginUser(currUserEmail, currUserPassword, userType, testContext, screenShotDir); ;
 
         }
-        
-        [Then(@"I ""(.*)"" for a loan for an Administrator to review")]
+      
+        [Then(@"My application is ""(.*)"" for an Administrator to review")]
         public void ThenITrueForALoanFprAnAdministratorToReview(string canApply)
         {
-            applicationSentOk.Should().Equals( bool.Parse( canApply) );
+            bool.Parse( canApply).Should().Equals(applicationSentOk);
         }
+
+        [When(@"As ""(.*)"", I logout of the application")]
+        public void WhenILogoutOfTheApplication(string userType)
+        {
+            if (userType == Homepage.userType.Admin)
+                pageObjectAdminPage.LogOut();
+
+            else if (userType == Homepage.userType.Applicant)
+                pageObjectApplicantPage.LogOut();
+
+        }
+
+
+        [When(@"I approve  ""(.*)"" application request")]
+        public void WhenIApproveApplicationRequest(string email)
+        {
+            pageObjectAdminPage.ApproveLoan(email, testContext, screenShotDir);
+        }
+
+
+        [Then(@"I expect the status of ""(.*)"" to be ""(.*)""")]
+        public void ThenIExpectTheStatusOfToBe(string email, string status)
+        {
+            status.Should().Equals(pageObjectAdminPage.CheckLoanStatus(email));
+        }
+
     }
 }

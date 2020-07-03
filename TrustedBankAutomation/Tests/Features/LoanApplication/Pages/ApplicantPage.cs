@@ -1,7 +1,4 @@
-﻿
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium;
@@ -10,6 +7,7 @@ using FluentAssertions;
 using SeleniumExtras.PageObjects;
 using TrustedBankAutomation.Core;
 using System.Runtime.InteropServices;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 {
@@ -78,8 +76,10 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// </summary>
         /// <param name="income"></param>
         /// <param name="loanAmt"></param>
+        /// <param name="currTestContext"></param>
+        /// <param name="screenShotDir"></param>
         /// <returns>True if application was sent successfully, false otherwise</returns>
-        public bool applicantApply(string income, string loanAmt)
+        public bool applicantApply(string income, string loanAmt, TestContext currTestContext, string screenShotDir)
         {
             bool appliedSuccessfully = false;
             try
@@ -92,17 +92,24 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
                 CmbFieldAmount.Click();
                 new SelectElement(CmbFieldAmount).SelectByText(loanAmt);
 
+
+                //Take screenshot before applicant applies for loan
+                TakeScreenShot(currTestContext, screenShotDir);
+
                 // apply for loan
                 BtnApply.Click();
 
-                appliedSuccessfully = true; 
+                // Take screenshot after applicant applies for loan
+                 TakeScreenShot(currTestContext, screenShotDir);
+
+
+                 appliedSuccessfully = true; 
 
             } catch(Exception) {
                 appliedSuccessfully = false;
             }
 
             return appliedSuccessfully;
-
         }
 
 
@@ -112,6 +119,8 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// </summary>
         public void LogOut()
         {
+            PageFactory.InitElements(BaseWebDriver, this);
+
             LinkLogOut.Click();
         }
 

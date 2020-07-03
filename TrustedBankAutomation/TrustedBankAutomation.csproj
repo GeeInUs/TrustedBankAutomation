@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Tests\Features\LoanApplication\StepDevs\CreateALoanApplication - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0" />
     <PackageReference Include="DotNetSeleniumExtras.PageObjects.Core" Version="3.12.0" />
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
@@ -40,12 +44,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Tests\Features\LoanApplication\StepDevs\ApproveAnApplicantsApplication.feature.cs">
+      <DependentUpon>ApproveAnApplicantsApplication.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="selenium-server-standalone-3.141.59.jar">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Test.runsettings">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Tests\Features\LoanApplication\StepDevs\ApproveAnApplicantsApplication.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>

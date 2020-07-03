@@ -1,7 +1,4 @@
-﻿
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium;
@@ -9,6 +6,7 @@ using FluentAssertions;
 using SeleniumExtras.PageObjects;
 using TrustedBankAutomation.Core;
 using System.Runtime.InteropServices;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 {
@@ -34,6 +32,13 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         private IWebElement TxtFeildEmailAddress { get; set; }
 
 
+        /// The APPROVAL STATUS OF A CANDIDATE feild
+        /// </summary>
+        [CacheLookup]
+        [FindsBy(How = How.CssSelector, Using = "#applications > div > div > span")]
+        private IWebElement LblApprovalStatus { get; set; }
+
+ 
         /// The logout link
         /// </summary>
         [CacheLookup]
@@ -41,12 +46,12 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         private IWebElement LinkLogOut { get; set; }
 
 
-        
+     
         /// <summary>
         /// The PASSWORD feild
         /// </summary>
         [CacheLookup]
-        [FindsBy(How = How.Id, Using = "btnApprove-2")]
+        [FindsBy(How = How.XPath, Using = "//*[text()= 'Approve' ]")]
         private IWebElement BtnApprove { get; set; }
 
 
@@ -72,18 +77,57 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// Admin Approves of a loan
         /// </summary>
         /// <param name="userToApprove"></param>
-      public void ApproveLoan(string userToApprove)
+        /// <param name="currTestContext"></param>
+        /// <param name="screenShotDir"></param>
+        public void ApproveLoan(string userToApprove, TestContext currTestContext, string screenShotDir)
         {
-            userToApprove = "\\" +  userToApprove + "\\" ;
-            var applicantCollection  =  BaseWebDriver.FindElements(By.XPath("//*[text()= " + userToApprove + " ]"));
 
-            if (applicantCollection.Count == 1)
-            {
+                PageFactory.InitElements(BaseWebDriver, this);
+
+                userToApprove = "\"" + userToApprove + "\"";
+
+                var applicantCollection  =  BaseWebDriver.FindElements(By.XPath("//*[text()= " + userToApprove + " ]"));
+
+          
                 applicantCollection[0].Click();
 
+
+                //Take screenshot before admin approves of a loan
+                TakeScreenShot(currTestContext, screenShotDir);
+
+                PageFactory.InitElements(BaseWebDriver, this);
+
                 BtnApprove.Click();
-            }
+
+                //Take screenshot after admin approves of a loan
+                TakeScreenShot(currTestContext, screenShotDir);
+
         }
+
+
+        /// <summary>
+        /// Admin checks the status of a loan
+        /// </summary>
+        /// <param name="userToApprove"></param>
+
+        public string CheckLoanStatus(string userToCheck)
+        {
+
+            PageFactory.InitElements(BaseWebDriver, this);
+
+            userToCheck = "\"" + userToCheck + "\"";
+
+            var applicantCollection = BaseWebDriver.FindElements(By.XPath("//*[text()= " + userToCheck + " ]"));
+
+            applicantCollection[0].Click();
+
+            PageFactory.InitElements(BaseWebDriver, this);
+
+
+           return LblApprovalStatus.Text;
+
+        }
+
 
 
         /// <summary>
@@ -91,6 +135,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// </summary>
         public void LogOut()
         {
+            PageFactory.InitElements(BaseWebDriver, this);
             LinkLogOut.Click();
         }
 
