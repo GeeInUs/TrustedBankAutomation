@@ -16,6 +16,10 @@
     <Parameter name="ui.base.url" value="http://localhost:5001/login" />
     <Parameter name="server.comm.port" value="4444" />
     <Parameter name="screenshot.dir" value="\ScreenShots\" />
+    <Parameter name="reports.dir.name" value="\Reports\" />
+    <Parameter name="reports.dir" value="\Reports\" />
+    <Parameter name="reports.dir" value="\Reports\" />
+    <Parameter name="reports.dir" value="\Reports\" />
   </TestRunParameters>
 
 </RunSettings>

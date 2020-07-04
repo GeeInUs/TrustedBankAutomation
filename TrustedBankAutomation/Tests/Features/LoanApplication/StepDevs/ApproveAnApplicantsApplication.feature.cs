@@ -124,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("I launch TrustBank Page on \"Chrome\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.And("I sign-up with email \"Approve34@gmail.com\" and password \"Password1!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I sign-up with email \"Approve134021@gmail.com\" and password \"Password1!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.And("As \"Applicant\", I access the loan application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -142,10 +142,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("As \"Admin\", I access the loan application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.When("I approve  \"Approve34@gmail.com\" application request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I approve  \"Approve134021@gmail.com\" application request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
- testRunner.Then("I expect the status of \"Approve34@gmail.com\" to be \"Approved\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I expect the status of \"Approve134021@gmail.com\" to be \"Approved\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

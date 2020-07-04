@@ -14,6 +14,7 @@
     <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0" />
     <PackageReference Include="DotNetSeleniumExtras.PageObjects.Core" Version="3.12.0" />
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
+    <PackageReference Include="ExtentReports.Core" Version="1.0.3" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="gherkin" Version="6.0.0" />
     <PackageReference Include="GitHub" Version="1.24.0" />

@@ -5,11 +5,11 @@
 
 Scenario: Admin Approves a Client's Application
 	When I launch TrustBank Page on "Chrome"
-	And I sign-up with email "Approve34@gmail.com" and password "Password1!"
+	And I sign-up with email "Approve134021@gmail.com" and password "Password1!"
 	And As "Applicant", I access the loan application
 	Given I input a loan of "£5000" with a yearly income of "80,000"
 	Then My application is "True" for an Administrator to review
 	When As "Applicant", I logout of the application
 	And As "Admin", I access the loan application
-	When I approve  "Approve34@gmail.com" application request
-	Then I expect the status of "Approve34@gmail.com" to be "Approved"
+	When I approve  "Approve134021@gmail.com" application request
+	Then I expect the status of "Approve134021@gmail.com" to be "Approved"

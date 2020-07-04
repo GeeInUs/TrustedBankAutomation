@@ -27,6 +27,8 @@ namespace TrustedBankAutomation.Core
     {
         public static string ScreenShotFileName { get; set; }
 
+        public static Screenshot currScreenshot { get; set; }
+
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
 
@@ -34,6 +36,8 @@ namespace TrustedBankAutomation.Core
         public static extern IntPtr GetDesktopWindow();
 
         [StructLayout(LayoutKind.Sequential)]
+
+       
 
         private struct Rect
         {
@@ -113,11 +117,13 @@ namespace TrustedBankAutomation.Core
         {
             try
             {
+                currScreenshot = null;
+
                 ScreenShotFileName = screeshotDir + @"\" + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss_ffffff") + ".jpg";
 
-                var screenShot = ((ITakesScreenshot)WebDriver).GetScreenshot();
+                currScreenshot = ((ITakesScreenshot)WebDriver).GetScreenshot();
 
-                screenShot.SaveAsFile(ScreenShotFileName);
+                currScreenshot.SaveAsFile(ScreenShotFileName);
 
                 if (!File.Exists(ScreenShotFileName))
                 {
@@ -129,10 +135,13 @@ namespace TrustedBankAutomation.Core
                             g.CopyFromScreen(Point.Empty, Point.Empty, bitmap.Size);
                         }
                         bitmap.Save(ScreenShotFileName);
+
+                        Screenshot a;
+                        
                     }
                 }
             }
-            catch (Exception) { }
+            catch (Exception) { currScreenshot = null; }
             return new Tuple<bool, string>(File.Exists(ScreenShotFileName), ScreenShotFileName);
 
         }
@@ -629,7 +638,7 @@ namespace TrustedBankAutomation.Core
         /// </summary>
         /// <param name="CurrTestContext"></param>
         /// <param name="ScreenShotDir"></param>
-        public void TakeScreenShot( TestContext CurrTestContext, string ScreenShotDir)
+        public string TakeScreenShot( TestContext CurrTestContext, string ScreenShotDir)
         {
             Tuple<bool, string> SecondTake = null;
             Tuple<bool, string> ThirdTake = null;
@@ -659,6 +668,8 @@ namespace TrustedBankAutomation.Core
 
             if (Result.Item1 == true)
                 CurrTestContext.AddResultFile(Result.Item2);
+
+            return Result.Item1 == true ? Result.Item2 : null;
         }
 
 
@@ -1083,6 +1094,8 @@ namespace TrustedBankAutomation.Core
                 if (p.MainWindowTitle.IndexOf("-jar") <= 0 && p.MainWindowTitle.IndexOf("java") <= 0)
                     p.Kill();
             }
+
+            DisposeResources();
         }
 
 

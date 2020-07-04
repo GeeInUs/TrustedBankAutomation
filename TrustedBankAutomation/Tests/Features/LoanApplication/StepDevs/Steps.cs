@@ -4,6 +4,10 @@ using System.IO;
 using TrustedBankAutomation.Tests.Features.LoanApplication.Pages;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using  TrustedBankAutomation.Core ;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
+using System.Reflection;
+using System.Collections;
 
 namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
 {
@@ -39,6 +43,12 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// </summary> 
         private static ApplicantPage pageObjectApplicantPage { get; set; }
 
+        /// <summary>
+        ///Holds necessary information to generate reports
+        /// </summary>
+        private static Reporting reporting { get; set; }
+
+     
 
         /// <summary>
         ///  Testing application url
@@ -74,9 +84,14 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
 
 
         /// <summary>
-        ///  Test context
+        /// Get/sets the name of the report directory
         /// </summary>
-        private TestContext testContext { get; set; }
+        private string reportDirectory  { get; set; }
+
+    /// <summary>
+    ///  Test context
+    /// </summary>
+    private TestContext testContext { get; set; }
 
         /// <summary>
         /// Initialize by context injection
@@ -87,31 +102,63 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         public Steps(ScenarioContext _scenarioContext, FeatureContext _featureContext)
         {
             scenarioContext = _scenarioContext;
-
             featureContext = _featureContext;
-
             testContext = scenarioContext.ScenarioContainer.Resolve<Microsoft.VisualStudio.TestTools.UnitTesting.TestContext>();
 
-            Init();
+            InitTestProperties();
+
+            InitReportProperties();
         }
 
 
-    
-        [AfterFeature]
-        public static void Dereference()
+        private static string ProductName
         {
-            if (pageObjectHomePage != null)
+            get
             {
-                pageObjectHomePage.ReleaseUsedReferences();
-                pageObjectHomePage = null;
-            }
+                AssemblyProductAttribute myProduct =(AssemblyProductAttribute)AssemblyProductAttribute.GetCustomAttribute(Assembly.GetExecutingAssembly(),
+                                 typeof(AssemblyProductAttribute));
 
+                return myProduct.Product;
+            }
         }
+        /// <summary>
+        /// Initializes Report run settings
+        /// </summary>
+        private void InitReportProperties()
+        {
+            DateTime time = DateTime.Now;
+            string dateToday = "_date_" + time.ToString("yyyy-MM-dd") + "_time_" + time.ToString("HH-mm-ss");
+
+            reportDirectory = Directory.GetCurrentDirectory() + (testContext.Properties["reports.dir.name"]).ToString();
+
+            if (Directory.Exists(reportDirectory))
+                Directory.Delete(reportDirectory, true);
+
+            Directory.CreateDirectory(reportDirectory);
+
+            reporting = new Reporting();
+
+            reporting.BDDReports.ReportScenarioContext = scenarioContext;
+
+            reporting.BDDReports.ReportFeatureContext = featureContext; 
+
+            reporting.BDDReports.ReportFilePath = reportDirectory + ProductName + dateToday + ".html";
+
+            reporting.BDDReports.ReportTitle = "SpecFlow " + ProductName + " Reports"; ;
+
+            reporting.BDDReports.ReportDocName = ProductName + " Document";
+
+            reporting.InitReporting();
+
+           
+        }
+
+
 
         /// <summary>
         /// Initializes Test run settings
         /// </summary>
-        private void Init()
+        private void InitTestProperties()
         {
             screenShotDir = Directory.GetCurrentDirectory() + testContext.Properties["screenshot.dir"];
 
@@ -119,11 +166,11 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
 
             baseUrl =  (testContext.Properties["ui.base.url"]).ToString();
 
+            // create new screenshot directory
             if (Directory.Exists(screenShotDir))
                 Directory.Delete(screenShotDir, true);
 
-             Directory.CreateDirectory(screenShotDir);
-            
+         
         }
 
 
@@ -131,7 +178,12 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         [Given(@"I input a loan of ""(.*)"" with a yearly income of ""(.*)""")]
         public void GivenIInputALoanOfWithAYearlyIncomeOf(string loanAmt, string incomeAmt)
         {
-            applicationSentOk = pageObjectApplicantPage.applicantApply(incomeAmt, loanAmt, testContext, screenShotDir);
+            applicationSentOk = pageObjectApplicantPage.applicantApply(incomeAmt,
+                loanAmt, 
+                testContext,
+                screenShotDir);
+
+           
         }
         
         [When(@"I launch TrustBank Page on ""(.*)""")]
@@ -200,6 +252,56 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         {
             status.Should().Equals(pageObjectAdminPage.CheckLoanStatus(email));
         }
+
+
+        /// <summary>
+        /// Log each steps screenshot to reporter class
+        /// </summary>
+        /// <param name="objCollection"></param>
+        private static void LogReportStatus(ArrayList objCollection)
+        {
+            if (objCollection != null && objCollection.Count >= 1)
+            {
+                foreach (string fname in objCollection)
+                    reporting.LogStatus(fname);
+
+                objCollection.Clear();
+            }
+        }
+
+        [AfterStep]
+        public static void AfterEveryStep(ScenarioContext ScenarioContext, FeatureContext ReportFeatureContext)
+        {
+            reporting.BDDReports.ReportScenarioContext = ScenarioContext;
+
+            reporting.BDDReports.ReportFeatureContext = ReportFeatureContext;
+
+            if (pageObjectAdminPage != null)  LogReportStatus(pageObjectAdminPage.ScreenshotFileCollnt);
+
+            if (pageObjectApplicantPage != null) LogReportStatus(pageObjectApplicantPage.ScreenshotFileCollnt);
+
+            if (pageObjectHomePage != null) LogReportStatus(pageObjectHomePage.ScreenshotFileCollnt);
+
+        }
+
+        
+        
+        [AfterFeature]
+        public static void Dereference()
+        {
+            try
+            {
+                if (pageObjectHomePage != null)
+                {
+                    pageObjectHomePage.ReleaseUsedReferences();
+                    pageObjectHomePage = null;
+                }
+            }
+            catch (Exception) { }
+            finally { reporting.Close(); }
+
+        }
+
 
     }
 }

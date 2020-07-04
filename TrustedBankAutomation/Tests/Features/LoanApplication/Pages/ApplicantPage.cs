@@ -8,6 +8,7 @@ using SeleniumExtras.PageObjects;
 using TrustedBankAutomation.Core;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections;
 
 namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 {
@@ -55,6 +56,12 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 
 
         /// <summary>
+        /// holds a Collection of screenshot filenames per test step 
+        /// </summary>
+        public ArrayList ScreenshotFileCollnt { get; set; }
+
+
+        /// <summary>
         /// Initialize the applicant loans page using a driver
         /// </summary>
         /// <param name="currentDriver"></param>
@@ -63,7 +70,8 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         {
             APPLICATION_VISUAL_CUE_TEXT = visualCue;
              BaseWebDriver = currentDriver;
-
+            ScreenshotFileCollnt = null;
+            ScreenshotFileCollnt = new ArrayList();
             WaitForPageToLoad(MAX_WAIT_PAGE_TIME, APPLICATION_VISUAL_CUE_TEXT);
             MaximizePage();
             PageFactory.InitElements(BaseWebDriver, this);
@@ -79,7 +87,8 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// <param name="currTestContext"></param>
         /// <param name="screenShotDir"></param>
         /// <returns>True if application was sent successfully, false otherwise</returns>
-        public bool applicantApply(string income, string loanAmt, TestContext currTestContext, string screenShotDir)
+        public bool applicantApply(string income, string loanAmt, 
+            TestContext currTestContext, string screenShotDir)
         {
             bool appliedSuccessfully = false;
             try
@@ -94,16 +103,21 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 
 
                 //Take screenshot before applicant applies for loan
-                TakeScreenShot(currTestContext, screenShotDir);
+                var fileName = TakeScreenShot(currTestContext, screenShotDir);
+
+                // store filename
+                if (fileName != null) ScreenshotFileCollnt.Add(fileName);
 
                 // apply for loan
                 BtnApply.Click();
 
                 // Take screenshot after applicant applies for loan
-                 TakeScreenShot(currTestContext, screenShotDir);
+                fileName = TakeScreenShot(currTestContext, screenShotDir);
 
+                // store filename
+                if (fileName != null) ScreenshotFileCollnt.Add(fileName);
 
-                 appliedSuccessfully = true; 
+                appliedSuccessfully = true; 
 
             } catch(Exception) {
                 appliedSuccessfully = false;

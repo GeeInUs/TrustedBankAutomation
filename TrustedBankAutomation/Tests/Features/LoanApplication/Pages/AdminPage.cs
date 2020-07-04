@@ -7,6 +7,7 @@ using SeleniumExtras.PageObjects;
 using TrustedBankAutomation.Core;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections;
 
 namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 {
@@ -55,6 +56,10 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         private IWebElement BtnApprove { get; set; }
 
 
+        /// <summary>
+        /// holds a Collection of screenshot filenames per test step 
+        /// </summary>
+        public  ArrayList ScreenshotFileCollnt { get; set; }
 
         /// <summary>
         /// Initialize the Admin Administration page using a driver
@@ -65,7 +70,8 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         {
             APPLICATION_VISUAL_CUE_TEXT = pageVisualCue;
             BaseWebDriver = currentDriver;
-
+            ScreenshotFileCollnt = null;
+            ScreenshotFileCollnt = new ArrayList();
             WaitForPageToLoad(MAX_WAIT_PAGE_TIME, APPLICATION_VISUAL_CUE_TEXT);
             MaximizePage();
             PageFactory.InitElements(BaseWebDriver, this);
@@ -81,26 +87,33 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// <param name="screenShotDir"></param>
         public void ApproveLoan(string userToApprove, TestContext currTestContext, string screenShotDir)
         {
-
+            try
+            {
                 PageFactory.InitElements(BaseWebDriver, this);
 
                 userToApprove = "\"" + userToApprove + "\"";
 
-                var applicantCollection  =  BaseWebDriver.FindElements(By.XPath("//*[text()= " + userToApprove + " ]"));
+                var applicantCollection = BaseWebDriver.FindElements(By.XPath("//*[text()= " + userToApprove + " ]"));
 
-          
                 applicantCollection[0].Click();
 
-
                 //Take screenshot before admin approves of a loan
-                TakeScreenShot(currTestContext, screenShotDir);
+                var fileName = TakeScreenShot(currTestContext, screenShotDir);
+
+                // store filename
+                if (fileName != null) ScreenshotFileCollnt.Add(fileName);
 
                 PageFactory.InitElements(BaseWebDriver, this);
 
                 BtnApprove.Click();
 
                 //Take screenshot after admin approves of a loan
-                TakeScreenShot(currTestContext, screenShotDir);
+                fileName = TakeScreenShot(currTestContext, screenShotDir);
+
+                // store filename
+                if (fileName != null) ScreenshotFileCollnt.Add(fileName);
+
+            } catch (Exception) { }
 
         }
 
@@ -112,19 +125,21 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 
         public string CheckLoanStatus(string userToCheck)
         {
+            try
+            {
+                PageFactory.InitElements(BaseWebDriver, this);
 
-            PageFactory.InitElements(BaseWebDriver, this);
+                userToCheck = "\"" + userToCheck + "\"";
 
-            userToCheck = "\"" + userToCheck + "\"";
+                var applicantCollection = BaseWebDriver.FindElements(By.XPath("//*[text()= " + userToCheck + " ]"));
 
-            var applicantCollection = BaseWebDriver.FindElements(By.XPath("//*[text()= " + userToCheck + " ]"));
+                applicantCollection[0].Click();
 
-            applicantCollection[0].Click();
+                PageFactory.InitElements(BaseWebDriver, this);
 
-            PageFactory.InitElements(BaseWebDriver, this);
+            } catch (Exception) { }
 
-
-           return LblApprovalStatus.Text;
+            return LblApprovalStatus.Text;
 
         }
 

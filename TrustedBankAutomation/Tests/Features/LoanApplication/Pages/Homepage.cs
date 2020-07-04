@@ -8,6 +8,7 @@ using TrustedBankAutomation.Core;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections;
 
 namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 {
@@ -29,6 +30,11 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         ///  text to  look for when inital page is loaded 
         /// </summary>
         private string HOMEPAGE_VISUAL_CUE_TEXT { get; set; }
+
+        /// <summary>
+        /// holds a Collection of screenshot filenames per test step 
+        /// </summary>
+        public ArrayList ScreenshotFileCollnt { get; set; }
 
 
         public struct userType
@@ -69,7 +75,6 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 
 
 
-
         /// <summary>
         ///  Base constructor.opens browser, load base url and maximize page 
         /// </summary>
@@ -80,6 +85,8 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         public Homepage(string url, string serverPort, string browserType, string cueText = "Email address:") : base(url, browserType, serverPort)
         {
             HOMEPAGE_VISUAL_CUE_TEXT = cueText;
+            ScreenshotFileCollnt = null;
+            ScreenshotFileCollnt = new ArrayList();
             WaitForPageToLoad(MAX_WAIT_PAGE_TIME, HOMEPAGE_VISUAL_CUE_TEXT);
             MaximizePage();
             PageFactory.InitElements(BaseWebDriver, this);
@@ -99,22 +106,28 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// <param name="screenShotDir"></param>
         public void signUpUser(string email, string password, TestContext currTestContext, string screenShotDir )
         {
-            PageFactory.InitElements(BaseWebDriver, this);
+            try
+            {
+                PageFactory.InitElements(BaseWebDriver, this);
 
-            // set the email address
-            TxtFeildEmailAddress.Clear();
-            TxtFeildEmailAddress.SendKeys(email);
+                // set the email address
+                TxtFeildEmailAddress.Clear();
+                TxtFeildEmailAddress.SendKeys(email);
 
-            // set the password
-            TxtFieldPassword.Clear();
-            TxtFieldPassword.SendKeys(password);
+                // set the password
+                TxtFieldPassword.Clear();
+                TxtFieldPassword.SendKeys(password);
 
-            //Take screenshot before sign-up
-            TakeScreenShot(currTestContext, screenShotDir);
+                //Take screenshot before sign-up
+                var fileName = TakeScreenShot(currTestContext, screenShotDir);
 
-            // signs up a new user
-            BtnSignUp.Click();
+                // store filename
+                if (fileName != null) ScreenshotFileCollnt.Add(fileName);
 
+                // signs up a new user
+                BtnSignUp.Click();
+
+            } catch (Exception) { }
         }
 
 
@@ -130,36 +143,43 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// <returns></returns>
         public object loginUser(string email, string password, string userProfile, TestContext currTestContext, string screenShotDir)
         {
-            PageFactory.InitElements(BaseWebDriver, this);
-
-            if (userProfile == userType.Admin)
+            object pageObj = null;
+            try
             {
-                email = adminUserName;
-                password = adminPassword;
+                PageFactory.InitElements(BaseWebDriver, this);
 
-            }
+                if (userProfile == userType.Admin)
+                {
+                    email = adminUserName;
+                    password = adminPassword;
 
-            // set the email address
-            TxtFeildEmailAddress.Clear();
-            TxtFeildEmailAddress.SendKeys(email);
+                }
 
-            // set the password
-            TxtFieldPassword.Clear();
-            TxtFieldPassword.SendKeys(password);
+                // set the email address
+                TxtFeildEmailAddress.Clear();
+                TxtFeildEmailAddress.SendKeys(email);
 
-            //Take screenshot before login
-            TakeScreenShot(currTestContext, screenShotDir);
+                // set the password
+                TxtFieldPassword.Clear();
+                TxtFieldPassword.SendKeys(password);
 
-            // signs up a new user
-            BtnLogin.Click();
+                //Take screenshot before login
+                var fileName = TakeScreenShot(currTestContext, screenShotDir);
 
-            if (userProfile == userType.Admin)
-                return new AdminPage(BaseWebDriver);
-            else
-                return new ApplicantPage(BaseWebDriver);
+                // store filename
+                if (fileName != null) ScreenshotFileCollnt.Add(fileName);
 
-           
+                // signs up a new user
+                BtnLogin.Click();
 
+                if (userProfile == userType.Admin)
+                    pageObj = new AdminPage(BaseWebDriver);
+                else
+                    pageObj = new ApplicantPage(BaseWebDriver);
+
+            }catch (Exception) { }
+
+            return pageObj;
         }
 
    
