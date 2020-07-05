@@ -42,15 +42,18 @@ The work items of iterest are
     * SqlServer (Management.SqlIaaSAgent) to host TrustedBank Aapplication data repositoty
     
 # TEST PLAN 
-
-Manual test Suits can be found here
-	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=30
-	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=31
-	 https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=32
-	 https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=33
-	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=34
-	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=59
-	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=63
+  - ##  TrustedBank Loan Management Test Suites 
+    * All test cases are written in MS Azure
+    * There are 7 test suites in all
+    * For sake of brevity, the total number of manual test cases written is 27 
+ | ID             | 
+ | [Link to suit 30](https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=30  |
+ | [Link to suit 31](	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=31|
+  | [Link to suit 32](	 https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=32|
+ | [Link to suit 33](	 https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=33|
+ | [Link to suit 34](	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=34|
+ | [Link to suit 59](	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=59|
+ | [Link to suit 63](	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=63|
 
 # Test Execution
 
