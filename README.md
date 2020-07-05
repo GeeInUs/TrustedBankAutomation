@@ -4,25 +4,19 @@ The TrustedBank Loan Management Application relies on a database that holds info
 Testing is specification by design. Cucumber files should be written to drive tests.
 
 # Test Framework Stack
-  - ## SpecFlow 
-    * For test Specification 
-    * To run tests
-- Fluet Assertion 
+  - ## Fluet Assertion 
     * To verify Acceptance criteria
-- Git 
-    * For Source control
-    
-- Selenium WEBDRIVER 
-    * To drive UI testings 
-- Chrome Browser 
-    * App lication Under test will be driven on this
-- Java JDK 
+  - ## Git 
+    * For Source control 
+  - ## Selenium +  SpecFlow
+    * Chrome Driver browser to drive Application Under Test 
+    * For test Specification and to drive code implementation 
     * To launch an instance of selenum server
-- Windows (Windows Server 2019 Datacenter) 
-  * To host web aapplication
-  * Framework and libarary references
+  - Windows (Windows Server) 
+   * IIS To host TrustedBank Aapplication
+    * Framework and libarary references
 - SqlServer (Management.SqlIaaSAgent)
-  * Application Under Test data repositoty
+  * Hosting data repositoty
 
 # Test Execution
 I would prefer that solution in integrated to MS Azure for CI
