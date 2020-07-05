@@ -45,14 +45,50 @@ The work items of iterest are
   - ##  TrustedBank Loan Management Test Suites 
       * All test cases are written in [Click here to see MS Azure test cases](https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13)
    - ## [Manual Execution](http://dev.azure.com/GeeInUs/TrustedBankTests/_testManagement/analytics/progressreport)
-    * 29 test executed, 13 Passed, 13 Failed and 3 blocked
- ![Test summary](https://github.com/GeeInUs/Images/blob/master/negative%20income.png)
+  
+      
 
 # Test Execution
 I would prefer that solution in integrated to MS Azure for CI
 
 
-# Test results 
+# Retrospective
+RETROSPECTIVE
+Overview
+User experience problems. 
+	By default the system sets the administrator credentials. This is a security breach.
+	No way to tell if sign-up for a loan application is successful or not.  Confirmation label help the applicant know action is completed successful/failed in submitting
+	Admin is not given the option to reject/accept an application with comments. This can be handy for applicant.
+	Would be good if Admin has paging/filter functionality to view a specific applicant or a small range of applicant.
+	Applicant sees insipid UI layout when I login to  loan application using IE Browser
+
+		- 		-
+ Incomplete specs. 
+	As an Administrator:: Reject Functionality is missing
+	Failure to meet acceptance criteria requirement that permits a user to apply after 30 days
+	
+	 broken functionality
+Yearly income input using decimals crashes the system.
+	Yearly income input  of Negative amounts can be input to the system
+	Invalid email criteria is not met. No defence programming here
+	Invalid password complexity is not met. A user can sign-up with just spaces as password
+	Sign-up with a password that has spaces can crash system
+	Buffer flow exception when large yearly income is inputted.
+	No warning/error messages to notify user when field is validated incorrectly
+
+
+Info-sec Issues:
+	Database has password in plain text. This should be encrypted.
+	Admin credentials is set on redirect. Anyone can login an approve a loan
+	System will permit a user with the same credentials sign up
+	User Locale not considered. A French citizen with accentuated characters and different number formatting (Language and Region Settings ) can be potentially bring down database
+
+
+
+
+
+
+
 
 
 
