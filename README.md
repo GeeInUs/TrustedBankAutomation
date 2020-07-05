@@ -60,7 +60,7 @@ Overview
 	* No way Applicant can tell if there are issues with loan application is successful or not. No warning labels/errors with wrong user action.
 	* Admin cannot reject/accept an application with comments. This is more of a user design issue.
 	* Admin cannot paging/filtery to view a specific applicant or a small range of applicants.
-        * Applicant sees insipid UI layout when I login to  loan application using IE Browser		-
+        * Applicant sees insipid UI layout when I login to  loan application using IE Browser	
 - ## Incomplete specs. 
         * No validation on password complexity. An applicant can get away with inputting spaces as password
 	* As an Administrator:: Reject of loan Functionality is missing
