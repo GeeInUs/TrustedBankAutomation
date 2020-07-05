@@ -58,14 +58,12 @@ I would prefer that solution in integrated to MS Azure for CI
 	* No way Applicant can tell if there are issues with loan application is successful or not. No warning labels/errors with wrong user action.
 	* Admin cannot reject/accept an application with comments. This is more of a user design issue.
 	* Admin cannot paging/filtery to view a specific applicant or a small range of applicants.
-      
-	
 - ## Incomplete specs
         * No validation on password complexity. An applicant can get away with inputting spaces as password
-	* As an Administrator:: Reject of loan Functionality is missing
-        * Failure to meet acceptance criteria requirement that permits a user to apply after 30 days	
+	* The Reject of loan a loa functionality is missing for Admin 	
+	* No specification on what happens when an application has not been action on by Admin afer 30 days. Can the applicant reapply even though one is in flight?
 - ## Broken functionality
-        * Applicant sees insipid UI layout when I login to loan application using IE Browser.
+        * Failure to meet acceptance criteria that permits a user to reapply after 30 days
 	* Yearly income input using decimals crashes the system.
         * Yearly income input  of Negative amounts can be input to the system
         * Invalid email criteria is not met. No defence programming here
