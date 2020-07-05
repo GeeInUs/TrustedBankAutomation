@@ -74,29 +74,8 @@ I would prefer that solution in integrated to MS Azure for CI
         * Buffer flow exception when large yearly income is inputted.
         * No warning/error messages to notify user when field is validated incorrectly
 - ## Information security Issues
-	* By default the system sets the administrator credentials. This is a security breach.
-	* If administrator clicks sign-up, there user-role becomes an applicant. They lose priviledges to approve loans.
-	* No way Applicant can tell if there are issues with loan application is successful or not. No warning labels/errors with wrong user action.
-	* Admin cannot reject/accept an application with comments. This is more of a user design issue.
-	* Admin cannot paging/filtery to view a specific applicant or a small range of applicants.
-        * Database stoes password in plain text. This should be encrypted.
-        * Admin credentials is set on redirect. An applicant can login as Admin and approve their loan
-        * System will permit a user with the same credentials sign up
-        * Original script TrustedBank.sql fails. It had to be modified.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
+	* Database stoes password in plain text. This should be encrypted
+	* Admin credentials is set on redirect. An applicant can login as Admin and approve their loan
+	* System will permit a user with the same credentials sign up
+	* Original script TrustedBank.sql fails. It had to be modified.
+	
