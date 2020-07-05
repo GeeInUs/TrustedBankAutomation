@@ -56,8 +56,8 @@ I would prefer that solution in integrated to MS Azure for CI
 RETROSPECTIVE
 Overview
 - ## User experience problems. 
-	 By default the system sets the administrator credentials. This is a security breach.
-	 No way to tell if sign-up for a loan application is successful or not.  Confirmation label help the applicant know action is completed successful/failed in submitting
+	*  By default the system sets the administrator credentials. This is a security breach.
+	*  No way to tell if sign-up for a loan application is successful or not.  Confirmation label help the applicant know action is completed successful/failed in submitting
 	 Admin is not given the option to reject/accept an application with comments. This can be handy for applicant.
 	 Would be good if Admin has paging/filter functionality to view a specific applicant or a small range of applicant.
          Applicant sees insipid UI layout when I login to  loan application using IE Browser
