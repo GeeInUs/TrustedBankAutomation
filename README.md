@@ -61,7 +61,7 @@ Overview
 	* Admin cannot reject/accept an application with comments. This is more of a user design issue.
 	* Admin cannot paging/filtery to view a specific applicant or a small range of applicants.
         * Applicant sees insipid UI layout when I login to  loan application using IE Browser	
-- ## Incomplete specs. 
+- ## Incomplete specs
         * No validation on password complexity. An applicant can get away with inputting spaces as password
 	* As an Administrator:: Reject of loan Functionality is missing
         * Failure to meet acceptance criteria requirement that permits a user to apply after 30 days	
