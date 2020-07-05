@@ -46,7 +46,7 @@ The work items of iterest are
       * All test cases are written in [Click here to see MS Azure test cases](https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13)
    - ## [Manual Execution](http://dev.azure.com/GeeInUs/TrustedBankTests/_testManagement/analytics/progressreport)
     * 29 test executed, 13 Passed, 13 Failed and 3 blocked
-    
+    ![](https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png =250x250)
 
 # Test Execution
 I would prefer that solution in integrated to MS Azure for CI
