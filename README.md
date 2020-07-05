@@ -55,20 +55,21 @@ I would prefer that solution in integrated to MS Azure for CI
 # Retrospective
 RETROSPECTIVE
 Overview
-User experience problems. 
-	By default the system sets the administrator credentials. This is a security breach.
-	No way to tell if sign-up for a loan application is successful or not.  Confirmation label help the applicant know action is completed successful/failed in submitting
-	Admin is not given the option to reject/accept an application with comments. This can be handy for applicant.
-	Would be good if Admin has paging/filter functionality to view a specific applicant or a small range of applicant.
-	Applicant sees insipid UI layout when I login to  loan application using IE Browser
+- ## User experience problems. 
+	 By default the system sets the administrator credentials. This is a security breach.
+	 No way to tell if sign-up for a loan application is successful or not.  Confirmation label help the applicant know action is completed successful/failed in submitting
+	 Admin is not given the option to reject/accept an application with comments. This can be handy for applicant.
+	 Would be good if Admin has paging/filter functionality to view a specific applicant or a small range of applicant.
+         Applicant sees insipid UI layout when I login to  loan application using IE Browser
 
 		- 		-
- Incomplete specs. 
-	As an Administrator:: Reject Functionality is missing
-	Failure to meet acceptance criteria requirement that permits a user to apply after 30 days
+- ## Incomplete specs. 
+	 As an Administrator:: Reject Functionality is missing
+         Failure to meet acceptance criteria requirement that permits a user to apply after 30 days
 	
-	 broken functionality
-Yearly income input using decimals crashes the system.
+
+- ## broken functionality
+	 Yearly income input using decimals crashes the system.
 	Yearly income input  of Negative amounts can be input to the system
 	Invalid email criteria is not met. No defence programming here
 	Invalid password complexity is not met. A user can sign-up with just spaces as password
@@ -77,7 +78,7 @@ Yearly income input using decimals crashes the system.
 	No warning/error messages to notify user when field is validated incorrectly
 
 
-Info-sec Issues:
+- ##  Info-sec Issues:
 	Database has password in plain text. This should be encrypted.
 	Admin credentials is set on redirect. Anyone can login an approve a loan
 	System will permit a user with the same credentials sign up
