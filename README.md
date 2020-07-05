@@ -36,6 +36,8 @@ The work items of iterest are
     * Chrome Driver browser is used to drive TrustedBank Loan Management 
     * SpecFlow For test Specification and to drive code implementation 
     * To launch an instance of selenum server
+  - ## Extent Reports
+    * Test execution reporting 
   - ## Windows (Windows Server) 
     * IIS on server is used to host TrustedBank Aapplication
     * Has all Framework and libarary references
@@ -72,10 +74,10 @@ I would prefer that solution in integrated to MS Azure for CI
         * Buffer flow exception when large yearly income is inputted.
         * No warning/error messages to notify user when field is validated incorrectly
  - ## Info-sec Issues:
-      * Database stoes password in plain text. This should be encrypted.
-      * Admin credentials is set on redirect. An applicant can login as Admin and approve their loan
-      * System will permit a user with the same credentials sign up
-      * Original script TrustedBank.sql fails. It had to be modified.
+        * Database stoes password in plain text. This should be encrypted.
+        * Admin credentials is set on redirect. An applicant can login as Admin and approve their loan
+        * System will permit a user with the same credentials sign up
+        * Original script TrustedBank.sql fails. It had to be modified.
 
 
 
