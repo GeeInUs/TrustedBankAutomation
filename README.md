@@ -30,7 +30,8 @@ The work items of iterest are
   - ## Fluet Assertion 
     * To verify Acceptance criteria
   - ## Git 
-    * For Source control 
+    * I am using Github for source control. Acccess to my code  is public. 
+    * You can [Clone my code]( https://github.com/GeeInUs/TrustedBankAutomation. 
   - ## Selenium +  SpecFlow
     * Chrome Driver browser is used to drive TrustedBank Loan Management 
     * SpecFlow For test Specification and to drive code implementation 
@@ -40,6 +41,17 @@ The work items of iterest are
     * Has all Framework and libarary references
     * SqlServer (Management.SqlIaaSAgent) to host TrustedBank Aapplication data repositoty
     
+# TEST PLAN 
+
+Manual test Suits can be found here
+	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=30
+	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=31
+	 https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=32
+	 https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=33
+	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=34
+	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=59
+	https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=63
+
 # Test Execution
 
 # Test Execution
