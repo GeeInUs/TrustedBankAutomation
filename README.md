@@ -73,7 +73,7 @@ I would prefer that solution in integrated to MS Azure for CI
         * Sign-up with a password that has spaces can crash system
         * Buffer flow exception when large yearly income is inputted.
         * No warning/error messages to notify user when field is validated incorrectly
- - ## Infoormation security Issues:
+ - ## Information security Issues
         * Database stoes password in plain text. This should be encrypted.
         * Admin credentials is set on redirect. An applicant can login as Admin and approve their loan
         * System will permit a user with the same credentials sign up
