@@ -47,7 +47,6 @@ The work items of iterest are
    - ## [Manual Execution](http://dev.azure.com/GeeInUs/TrustedBankTests/_testManagement/analytics/progressreport)
   
       
-
 # Test Execution
 I would prefer that solution in integrated to MS Azure for CI
 
@@ -62,11 +61,11 @@ Overview
 	* Admin cannot reject/accept an application with comments. This is more of a user design issue.
 	* Admin cannot paging/filtery to view a specific applicant or a small range of applicants.
         * Applicant sees insipid UI layout when I login to  loan application using IE Browser		-
- - ## Incomplete specs. 
+- ## Incomplete specs. 
         * No validation on password complexity. An applicant can get away with inputting spaces as password
 	* As an Administrator:: Reject of loan Functionality is missing
         * Failure to meet acceptance criteria requirement that permits a user to apply after 30 days	
- - ## broken functionality
+ - ## Broken functionality
 	* Yearly income input using decimals crashes the system.
         * Yearly income input  of Negative amounts can be input to the system
         * Invalid email criteria is not met. No defence programming here
@@ -74,7 +73,7 @@ Overview
         * Sign-up with a password that has spaces can crash system
         * Buffer flow exception when large yearly income is inputted.
         * No warning/error messages to notify user when field is validated incorrectly
- - ##  Info-sec Issues:
+ - ## Info-sec Issues:
       * Database stoes password in plain text. This should be encrypted.
       * Admin credentials is set on redirect. An applicant can login as Admin and approve their loan
       * System will permit a user with the same credentials sign up
