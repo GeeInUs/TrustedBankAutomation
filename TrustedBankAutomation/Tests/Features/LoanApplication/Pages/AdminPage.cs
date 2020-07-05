@@ -107,11 +107,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 
                 BtnApprove.Click();
 
-                //Take screenshot after admin approves of a loan
-                fileName = TakeScreenShot(currTestContext, screenShotDir);
-
-                // store filename
-                if (fileName != null) ScreenshotFileCollnt.Add(fileName);
+                
 
             } catch (Exception) { }
 
@@ -122,8 +118,9 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// Admin checks the status of a loan
         /// </summary>
         /// <param name="userToApprove"></param>
-
-        public string CheckLoanStatus(string userToCheck)
+        /// <param name="currTestContext"></param>
+        /// <param name="screenShotDir"></param>
+        public string CheckLoanStatus(string userToCheck, TestContext currTestContext, string screenShotDir)
         {
             try
             {
@@ -135,11 +132,18 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
 
                 applicantCollection[0].Click();
 
+                
                 PageFactory.InitElements(BaseWebDriver, this);
+
+                //Take screenshot after admin approves of a loan
+               var fileName = TakeScreenShot(currTestContext, screenShotDir);
+
+                // store filename
+                if (fileName != null) ScreenshotFileCollnt.Add(fileName);
 
             } catch (Exception) { }
 
-            return LblApprovalStatus.Text;
+            return (LblApprovalStatus != null & LblApprovalStatus.Displayed) ? LblApprovalStatus.Text : "";
 
         }
 

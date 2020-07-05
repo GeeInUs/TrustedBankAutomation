@@ -20,6 +20,7 @@ using System.Drawing;
 using System.Runtime.InteropServices.ComTypes;
 using System.Drawing.Imaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace TrustedBankAutomation.Core
 {
@@ -878,6 +879,13 @@ namespace TrustedBankAutomation.Core
         public void NavigateBack()
         { BaseWebDriver.Navigate().Back(); }
 
+
+        /// Refreshes current page
+        /// </summary>
+        /// <returns></returns>
+        public void Refresh()
+        { BaseWebDriver.Navigate().Refresh(); }
+
         /// <summary>
         /// Gets the capabilities for FIREFOX
         /// </summary>
@@ -1086,12 +1094,10 @@ namespace TrustedBankAutomation.Core
         /// </summary>
         public void ReleaseUsedReferences()
         {
-            KillDrivers();
-
-            var CmdProcess = Process.GetProcessesByName("cmd");
-            foreach (Process p in CmdProcess)
+            var processes = Process.GetProcesses().Where(p => p.MainWindowTitle.Contains("cmd.exe"));
+            foreach (Process p in processes)
             {
-                if (p.MainWindowTitle.IndexOf("-jar") <= 0 && p.MainWindowTitle.IndexOf("java") <= 0)
+                if (p.MainWindowTitle.IndexOf("-jar") >= 0 && p.MainWindowTitle.IndexOf("java") >= 0)
                     p.Kill();
             }
 
@@ -1108,8 +1114,8 @@ namespace TrustedBankAutomation.Core
         {
             bool IsRunning = false;
 
-            var CmdProcess = Process.GetProcessesByName("cmd");
-            foreach (Process p in CmdProcess)
+            var processes = Process.GetProcesses().Where(p => p.MainWindowTitle.Contains("cmd.exe"));
+            foreach (Process p in processes)
             {
                 if (p.MainWindowTitle.IndexOf("-jar") > 0 && p.MainWindowTitle.IndexOf("java") > 0)
                 {
@@ -1137,8 +1143,7 @@ namespace TrustedBankAutomation.Core
         {
             try
             {
-                StopSeleniumServer();
-
+               
                 if (BaseWebDriver != null)
                 {
                     BaseWebDriver.Quit();
@@ -1146,6 +1151,8 @@ namespace TrustedBankAutomation.Core
                     BaseWebDriver = null;
 
                 }
+
+                StopSeleniumServer();
                 KillDrivers();
 
 

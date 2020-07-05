@@ -34,7 +34,7 @@
         private ExtentTest extentLogger { set; get; }
         private ExtentReports extentRprt { set; get; }
 
-        private ExtentHtmlReporter extentHtmlReporter { set; get; }
+        private ExtentV3HtmlReporter extentHtmlReporter { set; get; }
 
         private ExtentTest extentScenario { set; get; }
         private ExtentTest extentFeature { set; get; }
@@ -52,7 +52,7 @@
         public void InitReporting()
         {
 
-            extentHtmlReporter = new ExtentHtmlReporter(BDDReports.ReportFilePath);
+            extentHtmlReporter = new  ExtentV3HtmlReporter (BDDReports.ReportFilePath);
 
             //initialize ExtentReports and attach the HtmlReporter
             extentRprt = new ExtentReports();
@@ -78,7 +78,7 @@
             extentHtmlReporter.Start();
             extentHtmlReporter.Config.ReportName = BDDReports.ReportDocName;
             extentHtmlReporter.Config.EnableTimeline = true;
-            extentHtmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Standard;
+            extentHtmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
 
             // Create Report featue and scenario 
             extentFeature = extentRprt.CreateTest<Feature>(BDDReports.ReportFeatureContext.FeatureInfo.Title);

@@ -53,7 +53,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// <summary>
         ///  Testing application url
         /// </summary>
-        private string baseUrl { get; set; }
+        private static string baseUrl { get; set; }
 
         /// <summary>
         ///  The email address of the the user that just signed-up
@@ -66,32 +66,23 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// </summary>
         private string currUserPassword { get; set; }
 
-        /// <summary>
-        ///  If the applicant submitted application for loan 
-        /// </summary>
-        private bool applicationSentOk { get; set; }
-
 
         /// <summary>
         ///  Scenario context
         /// </summary>
-        private ScenarioContext scenarioContext { get; set; }
+        private static ScenarioContext scenarioContext { get; set; }
 
         /// <summary>
         ///  Feature context
         /// </summary>
-        private FeatureContext featureContext { get; set; }
+        private static FeatureContext featureContext { get; set; }
 
 
-        /// <summary>
-        /// Get/sets the name of the report directory
-        /// </summary>
-        private string reportDirectory  { get; set; }
-
+ 
     /// <summary>
     ///  Test context
     /// </summary>
-    private TestContext testContext { get; set; }
+    private static TestContext testContext { get; set; }
 
         /// <summary>
         /// Initialize by context injection
@@ -124,17 +115,15 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// <summary>
         /// Initializes Report run settings
         /// </summary>
-        private void InitReportProperties()
+        private static void InitReportProperties()
         {
             DateTime time = DateTime.Now;
             string dateToday = "_date_" + time.ToString("yyyy-MM-dd") + "_time_" + time.ToString("HH-mm-ss");
 
-            reportDirectory = Directory.GetCurrentDirectory() + (testContext.Properties["reports.dir.name"]).ToString();
+           var reportDirectory = Directory.GetCurrentDirectory() + (testContext.Properties["reports.dir.name"]).ToString();
 
-            if (Directory.Exists(reportDirectory))
-                Directory.Delete(reportDirectory, true);
-
-            Directory.CreateDirectory(reportDirectory);
+            if (! Directory.Exists(reportDirectory))
+                 Directory.CreateDirectory(reportDirectory);
 
             reporting = new Reporting();
 
@@ -142,7 +131,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
 
             reporting.BDDReports.ReportFeatureContext = featureContext; 
 
-            reporting.BDDReports.ReportFilePath = reportDirectory + ProductName + dateToday + ".html";
+            reporting.BDDReports.ReportFilePath = reportDirectory + ProductName + "\\" + featureContext.FeatureInfo.Title  +  "_" + dateToday + ".html";
 
             reporting.BDDReports.ReportTitle = "SpecFlow " + ProductName + " Reports"; ;
 
@@ -158,7 +147,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// <summary>
         /// Initializes Test run settings
         /// </summary>
-        private void InitTestProperties()
+        private static void InitTestProperties()
         {
             screenShotDir = Directory.GetCurrentDirectory() + testContext.Properties["screenshot.dir"];
 
@@ -167,10 +156,9 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
             baseUrl =  (testContext.Properties["ui.base.url"]).ToString();
 
             // create new screenshot directory
-            if (Directory.Exists(screenShotDir))
-                Directory.Delete(screenShotDir, true);
+            if (! Directory.Exists(screenShotDir))
+                Directory.CreateDirectory(screenShotDir);
 
-         
         }
 
 
@@ -178,7 +166,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         [Given(@"I input a loan of ""(.*)"" with a yearly income of ""(.*)""")]
         public void GivenIInputALoanOfWithAYearlyIncomeOf(string loanAmt, string incomeAmt)
         {
-            applicationSentOk = pageObjectApplicantPage.applicantApply(incomeAmt,
+              pageObjectApplicantPage.applicantApply(incomeAmt,
                 loanAmt, 
                 testContext,
                 screenShotDir);
@@ -223,9 +211,12 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         }
       
         [Then(@"My application is ""(.*)"" for an Administrator to review")]
-        public void ThenITrueForALoanFprAnAdministratorToReview(string canApply)
+        public void ThenITrueForALoanFprAnAdministratorToReview(string exptedStatus)
         {
-            bool.Parse( canApply).Should().Equals(applicationSentOk);
+
+            var actualStatus = pageObjectApplicantPage.GetApplicantStatus(testContext, screenShotDir);
+
+            exptedStatus.Should().Equals(actualStatus);
         }
 
         [When(@"As ""(.*)"", I logout of the application")]
@@ -250,8 +241,10 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         [Then(@"I expect the status of ""(.*)"" to be ""(.*)""")]
         public void ThenIExpectTheStatusOfToBe(string email, string status)
         {
-            status.Should().Equals(pageObjectAdminPage.CheckLoanStatus(email));
+            status.Should().Equals(pageObjectAdminPage.CheckLoanStatus(email, testContext, screenShotDir));
         }
+
+
 
 
         /// <summary>
@@ -268,6 +261,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
                 objCollection.Clear();
             }
         }
+
 
         [AfterStep]
         public static void AfterEveryStep(ScenarioContext ScenarioContext, FeatureContext ReportFeatureContext)

@@ -54,6 +54,12 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         [FindsBy(How = How.LinkText, Using = "Logout")]
         private IWebElement LinkLogOut { get; set; }
 
+        /// The STATUS OF A CANDIDATE feild
+        /// </summary>
+        [CacheLookup]
+        [FindsBy(How = How.CssSelector, Using = "#application > div > div:nth-child(4)")]
+        private IWebElement LblCandidateStatus { get; set; }
+
 
         /// <summary>
         /// holds a Collection of screenshot filenames per test step 
@@ -124,9 +130,38 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
             }
 
             return appliedSuccessfully;
+
+}
+
+
+
+        /// <summary>
+        /// Returns status of a loan
+        /// </summary>
+        /// <param name="currTestContext"></param>
+        /// <param name="screenShotDir"></param>
+        public string GetApplicantStatus( TestContext currTestContext, string screenShotDir)
+        {
+            try
+            {
+
+                Refresh();
+
+                PageFactory.InitElements(BaseWebDriver, this);
+
+                //Take screenshot after admin approves of a loan
+                var fileName = TakeScreenShot(currTestContext, screenShotDir);
+
+                // store filename
+                if (fileName != null) ScreenshotFileCollnt.Add(fileName);
+
+            }
+            catch (Exception) { }
+
+            return  (LblCandidateStatus != null & LblCandidateStatus.Displayed ) ? LblCandidateStatus.Text.Split("\"")[1] :"";
+
         }
-
-
+      
 
         /// <summary>
         /// Log out the active user

@@ -92,7 +92,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAccepted(string browser, string email, string password, string userType, string loanAmount, string yearIncome, string sent, string[] exampleTags)
+        public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAccepted(string browser, string email, string password, string userType, string loanAmount, string yearIncome, string status, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -102,7 +102,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
             argumentsOfScenario.Add("UserType", userType);
             argumentsOfScenario.Add("LoanAmount", loanAmount);
             argumentsOfScenario.Add("YearIncome", yearIncome);
-            argumentsOfScenario.Add("Sent", sent);
+            argumentsOfScenario.Add("Status", status);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New Applicant applies for a loan that is likely to be accepted", null, tagsOfScenario, argumentsOfScenario);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -137,7 +137,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given(string.Format("I input a loan of {0} with a yearly income of {1}", loanAmount, yearIncome), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.Then(string.Format("My application is {0} for an Administrator to review", sent), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("My application is {0} for an Administrator to review", status), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -153,11 +153,11 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserType", "\"Applicant\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"£5000\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"80,000\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Sent", "\"True\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Status", "\"Awaiting Decision\"")]
         public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAccepted_Variant0()
         {
 #line 6
-this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"CreateTest1@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£5000\"", "\"80,000\"", "\"True\"", ((string[])(null)));
+this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"CreateTest1@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£5000\"", "\"80,000\"", "\"Awaiting Decision\"", ((string[])(null)));
 #line hidden
         }
         
@@ -171,11 +171,11 @@ this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"Create
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserType", "\"Applicant\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"£40000\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"20,000\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Sent", "\"True\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Status", "\"Awaiting Decision\"")]
         public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAccepted_Variant1()
         {
 #line 6
-this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"CreateTest2@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£40000\"", "\"20,000\"", "\"True\"", ((string[])(null)));
+this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"CreateTest2@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£40000\"", "\"20,000\"", "\"Awaiting Decision\"", ((string[])(null)));
 #line hidden
         }
         
@@ -189,11 +189,11 @@ this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"Create
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserType", "\"Applicant\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"£40000\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"0\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Sent", "\"True\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Status", "\"Awaiting Decision\"")]
         public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAccepted_Variant2()
         {
 #line 6
-this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"CreateTest3@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£40000\"", "\"0\"", "\"True\"", ((string[])(null)));
+this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"CreateTest3@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£40000\"", "\"0\"", "\"Awaiting Decision\"", ((string[])(null)));
 #line hidden
         }
         
@@ -207,11 +207,11 @@ this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"Create
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserType", "\"Applicant\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"£5000\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"11111111111111111111111111111\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Sent", "\"False\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Status", "\"Awaiting Decision\"")]
         public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAccepted_Variant3()
         {
 #line 6
-this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"CreateTest4@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£5000\"", "\"11111111111111111111111111111\"", "\"False\"", ((string[])(null)));
+this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"CreateTest4@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£5000\"", "\"11111111111111111111111111111\"", "\"Awaiting Decision\"", ((string[])(null)));
 #line hidden
         }
         
@@ -225,11 +225,11 @@ this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"Create
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserType", "\"Applicant\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"£10000\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"-1\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Sent", "\"False\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Status", "\"Awaiting Decision\"")]
         public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAccepted_Variant4()
         {
 #line 6
-this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"CreateTest5@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£10000\"", "\"-1\"", "\"False\"", ((string[])(null)));
+this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"CreateTest5@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£10000\"", "\"-1\"", "\"Awaiting Decision\"", ((string[])(null)));
 #line hidden
         }
         
@@ -243,11 +243,11 @@ this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"Create
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:UserType", "\"Applicant\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:LoanAmount", "\"£10000\"")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:YearIncome", "\"41,000.567\"")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Sent", "\"False\"")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Status", "\"Awaiting Decision\"")]
         public virtual void NewApplicantAppliesForALoanThatIsLikelyToBeAccepted_Variant5()
         {
 #line 6
-this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"CreateTest6@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£10000\"", "\"41,000.567\"", "\"False\"", ((string[])(null)));
+this.NewApplicantAppliesForALoanThatIsLikelyToBeAccepted("\"Chrome\"", "\"CreateTest6@gmail.com\"", "\"Password1!\"", "\"Applicant\"", "\"£10000\"", "\"41,000.567\"", "\"Awaiting Decision\"", ((string[])(null)));
 #line hidden
         }
     }

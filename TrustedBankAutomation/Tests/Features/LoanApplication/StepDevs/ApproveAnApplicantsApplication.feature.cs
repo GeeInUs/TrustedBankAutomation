@@ -20,7 +20,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class ViewApproveAnApplicantsApplicationFeature
+    public partial class ApproveAnApplicantsApplicationFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -48,7 +48,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "View/Approve An Applicants Application", "\t\tAs an Administrator, \r\n\t\tI want to to be able to login  \r\n\t\tso that an I can vi" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Approve An Applicants Application", "\t\tAs an Administrator, \r\n\t\tI want to to be able to login  \r\n\t\tso that an I can vi" +
                     "ew the status of a New Applicant\'s loan .", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -64,9 +64,9 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "View/Approve An Applicants Application")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "Approve An Applicants Application")))
             {
-                global::TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs.ViewApproveAnApplicantsApplicationFeature.FeatureSetup(null);
+                global::TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs.ApproveAnApplicantsApplicationFeature.FeatureSetup(null);
             }
         }
         
@@ -94,7 +94,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Admin Approves a Client\'s Application")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "View/Approve An Applicants Application")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Approve An Applicants Application")]
         public virtual void AdminApprovesAClientsApplication()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -124,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("I launch TrustBank Page on \"Chrome\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.And("I sign-up with email \"Approve134021@gmail.com\" and password \"Password1!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I sign-up with email \"Approve1@gmail.com\" and password \"Password1!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.And("As \"Applicant\", I access the loan application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -133,7 +133,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I input a loan of \"£5000\" with a yearly income of \"80,000\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.Then("My application is \"True\" for an Administrator to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("My application is \"Awaiting Decision\" for an Administrator to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
  testRunner.When("As \"Applicant\", I logout of the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -142,10 +142,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("As \"Admin\", I access the loan application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.When("I approve  \"Approve134021@gmail.com\" application request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I approve  \"Approve1@gmail.com\" application request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
- testRunner.Then("I expect the status of \"Approve134021@gmail.com\" to be \"Approved\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I expect the status of \"Approve1@gmail.com\" to be \"Approved\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
