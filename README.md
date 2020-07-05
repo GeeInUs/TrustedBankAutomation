@@ -45,17 +45,15 @@ The work items of iterest are
   - ##  TrustedBank Loan Management Test Suites 
     * All test cases are written in MS Azure
     * There are 29 test cases in all
-    
-- ## Manual test cases 
  | Overview            | 
- |---------------------|
- | [Link to suit 30] (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=30)|
- | [Link to suit 31] (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=31)|
- | [Link to suit 32] (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=32)|
- | [Link to suit 33] (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=33)|
- | [Link to suit 34] (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=34)|
- | [Link to suit 59] (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=59)|
- | [Link to suit 63] (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=63)|
+ |---------------------------------------------------------------------------------------------|
+ | (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=30)|
+ | (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=31)|
+ | (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=32)|
+ | (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=33)|
+ | (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=34)|
+ | (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=59)|
+ | (https://dev.azure.com/GeeInUs/TrustedBankTests/_testPlans/execute?planId=13&suiteId=63)|
 
 # Test Execution
 
