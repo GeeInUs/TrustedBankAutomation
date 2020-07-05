@@ -61,9 +61,9 @@ I would prefer that solution in integrated to MS Azure for CI
 	* Admin cannot reject/accept an application with comments. This is more of a user design issue.
 	* Admin cannot paging/filtery to view a specific applicant or a small range of applicants.
 - ## Broken or incomplete specification 
-        * No validation on password complexity. An applicant can get away with inputting spaces as password
 	* The Reject of loan a loa functionality is missing for Admin 	
 	* No specification on what happens when an application has not been action on by Admin afer 30 days. Can the applicant reapply even though one is in flight?
+	* No validation on password complexity. An applicant can get away with inputting spaces as password. 
 - ## Broken functionality
         * Failure to meet acceptance criteria that permits a user to reapply after 30 days
 	* Yearly income input using decimals crashes the system.
