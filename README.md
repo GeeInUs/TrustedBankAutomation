@@ -65,6 +65,7 @@ I would prefer that solution in integrated to MS Azure for CI
 	* As an Administrator:: Reject of loan Functionality is missing
         * Failure to meet acceptance criteria requirement that permits a user to apply after 30 days	
 - ## Broken functionality
+        * Applicant sees insipid UI layout when I login to loan application using IE Browser.
 	* Yearly income input using decimals crashes the system.
         * Yearly income input  of Negative amounts can be input to the system
         * Invalid email criteria is not met. No defence programming here
