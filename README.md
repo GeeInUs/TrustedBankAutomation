@@ -57,14 +57,14 @@ RETROSPECTIVE
 Overview
 - ## User experience problems. 
 	* By default the system sets the administrator credentials. This is a security breach.
-	* No way to tell if sign-up for a loan application is successful or not.  Confirmation label help the applicant know action is completed successful/failed in submitting
-	* Admin is not given the option to reject/accept an application with comments. This can be handy for applicant.
-	* Would be good if Admin has paging/filter functionality to view a specific applicant or a small range of applicant.
-        * Applicant sees insipid UI layout when I login to  loan application using IE Browser
-
-		- 		-
+	* If administrator clicks sign-up, there user-role becomes an applicant. They lose priviledges to approve loans.
+	* No way Applicant can tell if there are issues with loan application is successful or not. No warning labels/errors with wrong user action.
+	* Admin cannot reject/accept an application with comments. This is more of a user design issue.
+	* Admin cannot paging/filtery to view a specific applicant or a small range of applicants.
+        * Applicant sees insipid UI layout when I login to  loan application using IE Browser		-
 - ## Incomplete specs. 
-	* As an Administrator:: Reject Functionality is missing
+        * No validation on password complexity. An applicant can get away with inputting spaces as password
+	* As an Administrator:: Reject of loan Functionality is missing
         * Failure to meet acceptance criteria requirement that permits a user to apply after 30 days	
 
 - ## broken functionality
@@ -76,12 +76,11 @@ Overview
         * Buffer flow exception when large yearly income is inputted.
         *  No warning/error messages to notify user when field is validated incorrectly
 
-
 - ##  Info-sec Issues:
-      * Database has password in plain text. This should be encrypted.
-      * Admin credentials is set on redirect. Anyone can login an approve a loan
+      * Database stoes password in plain text. This should be encrypted.
+      * Admin credentials is set on redirect. An applicant can login as Admin and approve their loan
       * System will permit a user with the same credentials sign up
-      * User Locale not considered. A French citizen with accentuated characters and different number formatting (Language and Region Settings ) can be potentially bring down database
+      * Original script TrustedBank.sql fails. It had to be modified.
 
 
 
