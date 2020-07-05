@@ -5,12 +5,13 @@ Testing is specification by design. Cucumber files should be written to drive te
 
 
 # User Stores
-All user stories are defined in MS Azure. 
-You must login as July.Test2020@outlook.com to view all related stories and work items supporting this project.
-Credentials for this user will be sent in a seperate email.
-As July.Test2020@outlook.com, you will be able to see
-•	Acceptance criteria for TrustedBank Loan Management Application 
-•	 All Work -items and Iteration to which work was done.
+- All user stories are defined in MS Azure. 
+- You must login as July.Test2020@outlook.com to view all related stories and work items supporting this project.
+- Credentials for this user will be sent in a seperate email.
+- As July.Test2020@outlook.com, you will be able to see
+- Acceptance criteria for TrustedBank Loan Management Application 
+-	All Work -items and Iteration to which work was done.
+
 The work items of iterest are 
 
 | ID             | Story                                                       |
