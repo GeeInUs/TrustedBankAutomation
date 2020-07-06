@@ -137,7 +137,7 @@ namespace TrustedBankAutomation.Core
                         }
                         bitmap.Save(ScreenShotFileName);
 
-                        Screenshot a;
+                        
                         
                     }
                 }
@@ -1102,6 +1102,21 @@ namespace TrustedBankAutomation.Core
             }
 
             DisposeResources();
+        }
+
+        /// <summary>
+        /// Kills references to existing command console except selenium
+        /// </summary>
+        public void KillHost()
+        {
+            var processes = Process.GetProcesses().Where(p => p.MainWindowTitle.Contains("cmd.exe"));
+            foreach (Process p in processes)
+            {
+                if (p.MainWindowTitle.IndexOf("TrustedBank") >= 0 )
+                    p.Kill();
+            }
+
+  
         }
 
 

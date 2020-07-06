@@ -26,7 +26,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// <summary>
         ///  selenium server listening port
         /// </summary>
-        private static string seleniumPort { get; set; }
+        private const string seleniumPort = "4444";
 
         /// <summary>
         /// Instance of homepage reference
@@ -48,12 +48,12 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// </summary>
         private static Reporting reporting { get; set; }
 
-     
+
 
         /// <summary>
         ///  Testing application url
         /// </summary>
-        private static string baseUrl { get; set; }
+        private const string baseUrl = "http://localhost:5000/login";
 
         /// <summary>
         ///  The email address of the the user that just signed-up
@@ -70,19 +70,19 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// <summary>
         ///  Scenario context
         /// </summary>
-        private static ScenarioContext scenarioContext { get; set; }
+        public static ScenarioContext scenarioContext { get; set; }
 
         /// <summary>
         ///  Feature context
         /// </summary>
-        private static FeatureContext featureContext { get; set; }
+        public static FeatureContext featureContext { get; set; }
 
 
- 
-    /// <summary>
-    ///  Test context
-    /// </summary>
-    private static TestContext testContext { get; set; }
+
+        /// <summary>
+        ///  Test context
+        /// </summary>
+        public static TestContext testContext { get; set; }
 
         /// <summary>
         /// Initialize by context injection
@@ -90,16 +90,20 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// <param name="_scenarioContext"></param>
         /// <param name="_featureContext"></param>
 
-        public Steps(ScenarioContext _scenarioContext, FeatureContext _featureContext)
+   
+        public   Steps(ScenarioContext _scenarioContext, FeatureContext _featureContext)
         {
             scenarioContext = _scenarioContext;
             featureContext = _featureContext;
             testContext = scenarioContext.ScenarioContainer.Resolve<Microsoft.VisualStudio.TestTools.UnitTesting.TestContext>();
 
             InitTestProperties();
-
             InitReportProperties();
+
+
+
         }
+
 
 
         private static string ProductName
@@ -115,23 +119,21 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// <summary>
         /// Initializes Report run settings
         /// </summary>
-        private static void InitReportProperties()
+        public  void InitReportProperties()
         {
-            DateTime time = DateTime.Now;
-            string dateToday = "_date_" + time.ToString("yyyy-MM-dd") + "_time_" + time.ToString("HH-mm-ss");
 
-           var reportDirectory = Directory.GetCurrentDirectory() + (testContext.Properties["reports.dir.name"]).ToString();
+            var reportDirectory = Directory.GetCurrentDirectory() + @"\Reports\";
 
             if (! Directory.Exists(reportDirectory))
                  Directory.CreateDirectory(reportDirectory);
-
+           
             reporting = new Reporting();
 
             reporting.BDDReports.ReportScenarioContext = scenarioContext;
 
             reporting.BDDReports.ReportFeatureContext = featureContext; 
 
-            reporting.BDDReports.ReportFilePath = reportDirectory + ProductName + "\\" + featureContext.FeatureInfo.Title  +  "_" + dateToday + ".html";
+            reporting.BDDReports.ReportFilePath = reportDirectory + ProductName + "\\" + featureContext.FeatureInfo.Title  + ".html";
 
             reporting.BDDReports.ReportTitle = "SpecFlow " + ProductName + " Reports"; ;
 
@@ -147,13 +149,9 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// <summary>
         /// Initializes Test run settings
         /// </summary>
-        private static void InitTestProperties()
+        public  static void InitTestProperties()
         {
-            screenShotDir = Directory.GetCurrentDirectory() + testContext.Properties["screenshot.dir"];
-
-            seleniumPort =  ( testContext.Properties["server.comm.port"]).ToString() ;
-
-            baseUrl =  (testContext.Properties["ui.base.url"]).ToString();
+            screenShotDir = Directory.GetCurrentDirectory() + @"\ScreenShots\";
 
             // create new screenshot directory
             if (! Directory.Exists(screenShotDir))
@@ -278,9 +276,26 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
 
         }
 
-        
-        
+
+
         [AfterFeature]
+         public static void ReportIt()
+            {
+            try
+            {
+                if (reporting != null)
+                    reporting.Close();
+            }
+            catch (Exception) { }
+            finally
+            {
+                reporting = null;
+                   
+            }
+        }
+        
+       
+         [AfterTestRun]
         public static void Dereference()
         {
             try
@@ -288,11 +303,15 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
                 if (pageObjectHomePage != null)
                 {
                     pageObjectHomePage.ReleaseUsedReferences();
+                    pageObjectHomePage.KillHost();
                     pageObjectHomePage = null;
                 }
             }
             catch (Exception) { }
-            finally { reporting.Close(); }
+            finally {
+               if ( reporting!= null)
+                   reporting.Close();
+            }
 
         }
 

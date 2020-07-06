@@ -122,6 +122,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// <param name="screenShotDir"></param>
         public string CheckLoanStatus(string userToCheck, TestContext currTestContext, string screenShotDir)
         {
+            string Status = "";
             try
             {
                 PageFactory.InitElements(BaseWebDriver, this);
@@ -141,9 +142,11 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
                 // store filename
                 if (fileName != null) ScreenshotFileCollnt.Add(fileName);
 
+                Status =  (LblApprovalStatus != null & LblApprovalStatus.Displayed) ? LblApprovalStatus.Text : "";
+
             } catch (Exception) { }
 
-            return (LblApprovalStatus != null & LblApprovalStatus.Displayed) ? LblApprovalStatus.Text : "";
+            return Status;
 
         }
 

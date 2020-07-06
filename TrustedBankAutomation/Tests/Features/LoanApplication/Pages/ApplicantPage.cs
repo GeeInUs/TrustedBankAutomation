@@ -142,6 +142,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
         /// <param name="screenShotDir"></param>
         public string GetApplicantStatus( TestContext currTestContext, string screenShotDir)
         {
+            string Status = "";
             try
             {
 
@@ -155,10 +156,12 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.Pages
                 // store filename
                 if (fileName != null) ScreenshotFileCollnt.Add(fileName);
 
+                Status = (LblCandidateStatus != null & LblCandidateStatus.Displayed) ? LblCandidateStatus.Text.Split("\"")[1] : "";
+
             }
             catch (Exception) { }
 
-            return  (LblCandidateStatus != null & LblCandidateStatus.Displayed ) ? LblCandidateStatus.Text.Split("\"")[1] :"";
+            return Status;
 
         }
       
