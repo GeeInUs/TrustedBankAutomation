@@ -17,7 +17,7 @@
     * To verify Acceptance criteria
   - ## Git 
     * I am using Github for source control. Acccess to my code  is public. 
-    * You can [Clone my code]( https://github.com/GeeInUs/TrustedBankAutomation. 
+    * You can Clone my code by using https://github.com/GeeInUs/TrustedBankAutomation. 
   - ## Selenium +  SpecFlow
     * Chrome Driver browser is used to drive TrustedBank Loan Management 
     * SpecFlow For test Specification and to drive code implementation 
