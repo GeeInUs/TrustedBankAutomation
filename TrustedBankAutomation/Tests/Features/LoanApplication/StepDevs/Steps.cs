@@ -26,7 +26,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// <summary>
         ///  selenium server listening port
         /// </summary>
-        private const string seleniumPort = "4444";
+        private static string seleniumPort {get;set;}
 
         /// <summary>
         /// Instance of homepage reference
@@ -53,12 +53,12 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// <summary>
         ///  Testing application url
         /// </summary>
-        private const string baseUrl = "http://localhost:5000/login";
+        private static  string baseUrl { get; set; }
 
-        /// <summary>
-        ///  The email address of the the user that just signed-up
-        /// </summary>
-        private string currUserEmail { get; set; }
+    /// <summary>
+    ///  The email address of the the user that just signed-up
+    /// </summary>
+    private string currUserEmail { get; set; }
 
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         public  void InitReportProperties()
         {
 
-            var reportDirectory = Directory.GetCurrentDirectory() + @"\Reports\";
+            var reportDirectory = Directory.GetCurrentDirectory() + testContext.Properties["reports.dir.name"].ToString();
 
             if (! Directory.Exists(reportDirectory))
                  Directory.CreateDirectory(reportDirectory);
@@ -151,7 +151,11 @@ namespace TrustedBankAutomation.Tests.Features.LoanApplication.StepDevs
         /// </summary>
         public  static void InitTestProperties()
         {
-            screenShotDir = Directory.GetCurrentDirectory() + @"\ScreenShots\";
+            baseUrl = testContext.Properties["ui.base.url"].ToString();
+
+            seleniumPort =  testContext.Properties["server.comm.port"].ToString();
+           
+            screenShotDir = Directory.GetCurrentDirectory() + testContext.Properties["screenshot.dir"].ToString();
 
             // create new screenshot directory
             if (! Directory.Exists(screenShotDir))
